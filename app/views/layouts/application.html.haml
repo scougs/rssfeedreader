@@ -5,11 +5,18 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    .row-fluid
+%body
+  .container
+    -if current_user
+      .row-fluid
       .span3
-        = render 'layouts/sidebar'
+      = render 'layouts/sidebar'
       .span9
-        / = render 'shared/alert_message'
-        / = render 'shared/error_message'
-        = yield
+      / = render 'shared/alert_message'
+      / = render 'shared/error_message'
+      = yield
+    -else
+      .row-fluid
+      .span12
+      = yield
+
