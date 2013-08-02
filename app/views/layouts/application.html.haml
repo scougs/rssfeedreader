@@ -6,10 +6,10 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .row-fluid/
+    .row-fluid
       .span3
         = render 'layouts/sidebar'
       .span9
-        = render 'shared/alert_message'
-        = render 'shared/error_message'
+        / = render 'shared/alert_message'
+        / = render 'shared/error_message'
         = yield
