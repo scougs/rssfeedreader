@@ -18,15 +18,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # def create
-  #     @user = User.new(params[:user])
-  #     if @user.save
-  #             session[:user_id] = @user.id
-  #       redirect_to users_path, notice: "Account created. You are now logged in."
-  #     else
-  #       render 'new'
-  #     end
-  #   end
+  def create
+      @user = User.new(params[:user])
+      if @user.save
+              session[:user_id] = @user.id
+        redirect_to users_path, notice: "Account created. You are now logged in."
+      else
+        render 'new'
+      end
+    end
 
 
   def update
