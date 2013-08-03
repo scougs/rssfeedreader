@@ -4,7 +4,11 @@
   %li= feed.title
   %li= feed.url
   - feed.entries.each do |entry|
-
     %li= entry.title
     %li= entry.author
     %li= raw entry.content
+
+
+
+  / %li Read Full Post
+  /   %a{:href=> "/show.html.haml"} Home

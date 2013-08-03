@@ -18,15 +18,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # def create
-  #     @user = User.new(params[:user])
-  #     if @user.save
-  #             session[:user_id] = @user.id
-  #       redirect_to users_path, notice: "Account created. You are now logged in."
-  #     else
-  #       render 'new'
-  #     end
-  #   end
+  def create
+      @user = User.new(params[:user])
+      if @user.save
+              session[:user_id] = @user.id
+        redirect_to users_path, notice: "Account created. You are now logged in."
+      else
+        render 'new'
+      end
+    end
 
 
   def update
@@ -40,18 +40,17 @@ class UsersController < ApplicationController
   end
 
 
-  def destroy
-    @user = User.find(params[:id])
+    def destroy
+      @user = User.find(params[:id])
+      if @user.destroy
+        redirect_to users_path, alert: 'User successfully deleted'
+      else
+        redirect_to user
+      end
 
-    if @user.destroy
-      redirect_to users_path, alert: 'User successfully deleted' 
-    else
-      redirect_to user
     end
 
-  end
 
-  
   def my_profile
     @user = current_user
     render :show
