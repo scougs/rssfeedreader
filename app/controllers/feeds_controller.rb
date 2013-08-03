@@ -32,15 +32,24 @@ before_filter :authenticate_user!
   end
 
   def create
-
+    binding.pry
     url = params[:url]
+    # Todo: Check if the xml url is available rather then homepage.
     @feed = Feed.where(url: params[:url]).first
-
+    @user = User.find(current_user.id)
     if (@feed == nil)
       @feed = RSSReader.new.create_rss_feed(url)
+      @feed.save
     end
+    attributes = {
+      feed_id: @feed.id,
+      user_id: @user.id,
+      category: params[:category]
+    }
+
+    @feeduser = FeedUser.create(attributes)
     # @feed = Feed.new(params[:feed])
-    # @feed.save
+
     redirect_to feeds_path
   end
 
