@@ -1,6 +1,9 @@
 Rssreader::Application.routes.draw do
 
   resources :feeds
+  post '/feeds', to: 'feeds#create', as: 'create_feed'
+
+
   resources :posts
   resources :users
 

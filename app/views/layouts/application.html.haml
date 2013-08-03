@@ -9,14 +9,14 @@
   .container
     -if current_user
       .row-fluid
-      .span3
-      = render 'layouts/sidebar'
-      .span9
-      / = render 'shared/alert_message'
-      / = render 'shared/error_message'
-      = yield
+        .span3
+          = render 'layouts/sidebar'
+        .span9
+          = render 'shared/alert_message'
+          / = render 'shared/error_message'
+          = yield
     -else
       .row-fluid
-      .span12
-      = yield
+        .span12
+          = yield
 
