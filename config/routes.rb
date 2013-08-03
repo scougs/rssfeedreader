@@ -1,8 +1,14 @@
 Rssreader::Application.routes.draw do
-  get "home/index"
-  devise_for :users
-  root to: "home#home"
+
   resources :feeds
   resources :posts
   resources :users
+
+  devise_for :users
+
+  get '/my_profile', to: 'users#my_profile', as: :my_profile
+  get "home/index"
+ 
+  root to: "home#home"
+
 end
