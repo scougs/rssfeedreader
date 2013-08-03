@@ -46,7 +46,6 @@ namespace :rss_apis do
         open(url) do |rss|
             time = Time.now
             feed = RSS::Parser.parse(rss)
-            binding.pry
             puts "Time to parse a url feed is #{Time.now-time}"
             @type=feed.feed_type
             if (@type == "atom")

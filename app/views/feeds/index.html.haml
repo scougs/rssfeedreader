@@ -1,1 +1,10 @@
 %h1 Dashboard Here
+%ul
+-@feeds.each do |feed|
+  %li= feed.title
+  %li= feed.url
+  - feed.entries.each do |entry|
+
+    %li= entry.title
+    %li= entry.author
+    %li= raw entry.content

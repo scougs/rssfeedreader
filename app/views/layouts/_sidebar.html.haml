@@ -1,1 +1,11 @@
-%h2 SIDEBAR
+%h2 SIDEBARZ
+
+=form_tag create_feed_url do
+  %div
+    =label_tag :url, "Enter your feed URL here:"
+    =text_field_tag :url, params[:url]
+
+  %div
+    =submit_tag "Submit"
+
+

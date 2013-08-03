@@ -1,5 +1,7 @@
 require 'open-uri'
 require 'rss'
+
+
 class RSSReader
 
     # Since the execution time is too slow, this will be run in a thread.
@@ -90,7 +92,7 @@ class RSSReader
             attributes = {
                title: entry.title.content,
                 url:  entry.link.href,
-                author: entry.author.name.content ,
+                author: entry.author.name.content,
                 content: (clean_xml(entry.content.content)),
                 published: entry.updated.content,
                 feed_id: feed_record.id,
@@ -118,7 +120,7 @@ class RSSReader
              attributes = {
                title: item.title,
                 url:  item.link,
-                author: item.author ,
+                author: item.author,
                 content: (clean_xml(item.description)),
                 published: item.pubDate,
                 feed_id: feed_record.id,
