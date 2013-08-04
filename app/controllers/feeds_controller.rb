@@ -6,8 +6,10 @@ before_filter :authenticate_user!
 
   def index
     @userfeeds = FeedUser.where(user_id: current_user.id)
-    binding.pry
-    @feeds = Feed.all
+
+    @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
+    # binding.pry
+    # @feeds = Feed.all
   end
 
   # def index
@@ -35,10 +37,9 @@ before_filter :authenticate_user!
   end
 
   def create
-    binding.pry
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.
-    @feed = Feed.where(url: params[:url]).first
+    @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
     @user = User.find(current_user.id)
     binding.pry
     if (@feed == nil)
@@ -56,7 +57,7 @@ before_filter :authenticate_user!
       category: (params[:category].capitalize)
     }
 
-    @feeduser = FeedUser.create(attributes)
+    FeedUser.create(attributes)
     # @feed = Feed.new(params[:feed])
     binding.pry
     redirect_to feeds_path

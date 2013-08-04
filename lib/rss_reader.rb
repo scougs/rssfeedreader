@@ -32,8 +32,8 @@ class RSSReader
 
         @feed=Feed.where(url: url).first
 
-
-        try_open(url).each do |rss|
+        binding.pry
+        open(url) do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
 

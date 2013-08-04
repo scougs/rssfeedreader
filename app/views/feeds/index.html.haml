@@ -1,12 +1,29 @@
 %h1 Dashboard Here
 
--@feeds.each do |feed|
-  %ul
+-if(@feed)
+  -@feeds.each do |feed|
     %ul
-    %li= feed.title
-    %li= feed.url
-    - feed.entries.each do |entry|
       %ul
-        %li= entry.title
+      %li= feed.title
+      %li= feed.url
+      - feed.entries.each do |entry|
+        %ul
+          %li= entry.title
+
+-if(@hash_userfeeds)
+  -@hash_userfeeds.each_pair do |category, arr_userfeeds|
+    %ul
+    %h3=category
+    -arr_userfeeds.each do |userfeed|
+
+      %li=link_to "#{userfeed.feed.title}", controller: "feeds", action: "show", id: userfeed.feed.id
+      %ul
+        -userfeed.feed.entries do |entry|
+          %li=entry.title
+
+
+
+
+
 
 
