@@ -5,15 +5,20 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"}
+    %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
 %body
   .container
     -if current_user
       .row-fluid
         .sidebar.span4
           = render 'layouts/sidebar'
-          
+        %a.toggle-sidebar{:href => "#"}
+          %p.btn.btn-warning Hide Sidebar
+
         .main.span7.offset1
           = yield
+
     -else
       .row-fluid
         .main.span12

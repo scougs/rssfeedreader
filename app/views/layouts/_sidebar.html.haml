@@ -14,20 +14,19 @@
     
 
 .sidebar-menu
-  %ul.nav.nav-pills.nav-stacked
+  %ul.nav.nav-tabs.nav-stacked
     %li
-      = link_to "Logout", destroy_user_session_path, method: :delete
+      = link_to 'Dashboard', feeds_path
     %li
       = link_to 'My Profile', my_profile_path
     %li
-      = link_to 'Dashboard', feeds_path
-    %br
+      = link_to "Logout", destroy_user_session_path, method: :delete
+  %br
 
 .sidebar-new-feed
   =form_tag create_feed_url do
     %h4 Subscribe To A New Feed
-    =label_tag :url, "Enter the URL here:"
-    =text_field_tag :url, params[:url]
+    =text_field_tag :url, params[:url], :placeholder => "Enter URL here"
     %br
     =submit_tag "Submit", class: "btn-info"
 

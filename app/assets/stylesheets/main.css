@@ -1,3 +1,10 @@
+/* CONTAINER */
+
+.container{
+  padding-top: 50px;
+}
+
+
 /* SIDEBAR */
 
 .sidebar {
@@ -16,9 +23,31 @@
   padding-bottom: 20px;
 }
 
+.sidebar-new-feed {
+  padding: 8px;
+  border: 1px;
+  border-color: #ddd;
+  border-style: solid;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
 
 /* USER DETAILS */
 
 .user-details-left {
 
+}
+
+a.toggle-sidebar {
+    position:fixed;
+    left:0;
+    bottom:0;
+    display:block;
+    color:white;
+    padding:10px 20px;
+}
+
+.no-sidebar {
+    margin-left:0 !important;
 }
