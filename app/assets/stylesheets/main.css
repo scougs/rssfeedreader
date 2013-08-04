@@ -1,0 +1,24 @@
+/* SIDEBAR */
+
+.sidebar {
+  padding: 10px;
+  border: 2px;
+  border-color: #333;
+  border-style: solid;
+}
+
+.sidebar-logo {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+.sidebar-user {
+  padding-bottom: 20px;
+}
+
+
+/* USER DETAILS */
+
+.user-details-left {
+
+}

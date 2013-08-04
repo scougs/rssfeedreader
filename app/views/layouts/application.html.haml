@@ -9,12 +9,13 @@
   .container
     -if current_user
       .row-fluid
-        .span3
+        .sidebar.span4
           = render 'layouts/sidebar'
-        .span9
+          
+        .main.span7.offset1
           = yield
     -else
       .row-fluid
-        .span12
+        .main.span12
           = yield
 
