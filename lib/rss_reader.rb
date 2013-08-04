@@ -3,27 +3,37 @@ require 'rss'
 
 
 class RSSReader
-
+    def try_open(url)
+        begin
+            doc=open(url)
+        rescue
+            puts "Error with connecting to url."
+            return nil
+        end
+        return doc
+    end
     # Since the execution time is too slow, this will be run in a thread.
     # Later on to update a page we might need javascript.
-    def create_rss_feed(url)
+     def create_rss_feed(url)
         # url ="http://feeds.feedblitz.com/SethsBlog"
         time = Time.now
         # url = "http://sethgodin.typepad.com/"
         url = url
         # home_url =  "http://sethgodin.typepad.com/"
-        doc = open(url)
-        puts "Time to open a url is: #{Time.now-time}"
+        doc = try_open(url)
+
+        return nil if doc.nil?
+        binding.pry
+
         if(doc.content_type == "text/html")
             url=extract_rss_feed(doc)
             puts Time.now-time
-
         end
 
         @feed=Feed.where(url: url).first
 
 
-        open(url) do |rss|
+        try_open(url).each do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
 

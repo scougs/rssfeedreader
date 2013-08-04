@@ -5,6 +5,8 @@ class FeedsController < ApplicationController
 before_filter :authenticate_user!
 
   def index
+    @userfeeds = FeedUser.where(user_id: current_user.id)
+    binding.pry
     @feeds = Feed.all
   end
 
@@ -20,6 +22,7 @@ before_filter :authenticate_user!
   # end
 
   def show
+
     @feed = Feed.find(params[:id])
   end
 
@@ -37,19 +40,25 @@ before_filter :authenticate_user!
     # Todo: Check if the xml url is available rather then homepage.
     @feed = Feed.where(url: params[:url]).first
     @user = User.find(current_user.id)
+    binding.pry
     if (@feed == nil)
       @feed = RSSReader.new.create_rss_feed(url)
-      @feed.save
+       if(@feed != nil)
+        @feed.save
+      else
+        return redirect_to feeds_path
+      end
     end
+
     attributes = {
       feed_id: @feed.id,
       user_id: @user.id,
-      category: params[:category]
+      category: (params[:category].capitalize)
     }
 
     @feeduser = FeedUser.create(attributes)
     # @feed = Feed.new(params[:feed])
-
+    binding.pry
     redirect_to feeds_path
   end
 

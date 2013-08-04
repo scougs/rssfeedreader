@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#Salman: Make sure you have a user_id = '1', as it sets all the values to that user.
+# ['http://1000awesomethings.com/','http://edition.cnn.com/', '']
+# @feed = RSSReader.new.create_rss_feed(url)
