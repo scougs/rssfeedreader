@@ -1,10 +1,15 @@
 .userdetails
-  %h1 Show Current User Details
+  %h1 Your Details
   = render 'shared/alert_message'
-  .row
-    .span3
+  .row-fluid
+    .span4.user-details-left
       = image_tag @user.photo.detail.url, class: "img-polaroid"
-    .span6
+      %br
+      %br
+      
+      =button_to 'Edit Details',  edit_user_path(@user), { method: "get", class: "btn btn-info" }
+      =button_to 'Delete User',@user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    .span4.offset1.user-details-right
       %h4 First Name
       %p 
         =@user.first_name
@@ -20,6 +25,3 @@
       %h4 User Bio
       %p 
         =@user.bio
-      %br
-      =button_to 'Edit Details',  edit_user_path(@user), { method: "get", class: "btn btn-info" }
-      =button_to 'Delete User',@user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

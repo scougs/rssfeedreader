@@ -19,7 +19,7 @@ class UserPhotoUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
-  ActionController::Base.helpers.asset_path("default-user-profile.png")
+  ActionController::Base.helpers.asset_path("default-user-profile.jpg")
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
@@ -33,7 +33,7 @@ class UserPhotoUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-     process :resize_to_fill => [100, 100]
+     process :resize_to_fill => [75, 75]
   end
 
   version :detail do

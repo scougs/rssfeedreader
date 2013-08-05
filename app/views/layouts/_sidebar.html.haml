@@ -1,12 +1,35 @@
-%h2 SIDEBAR
-= link_to 'My Profile', my_profile_path
-=form_tag create_feed_url do
-  %div
-    =label_tag :url, "Enter your feed URL here:"
-    =text_field_tag :url, params[:url]
-    =label_tag :category, "Tag Your Feed Here:"
-    =text_field_tag :category, params[:category]
+.sidebar-logo
+  =image_tag("freederlogo.jpg", alt: "Logo Image")
 
-  %div
-    =submit_tag "Submit"
+.sidebar-user
+  - if current_user
+    .row-fluid
+      .span4.sidebar-userimage
+        = image_tag current_user.photo.thumb.url, class: "img-polaroid"
+      .span4.sidebar-userdetails
+        %h5
+          = current_user.first_name
+          = current_user.last_name
+          = current_user.email
+    
+
+.sidebar-menu
+  %ul.nav.nav-tabs.nav-stacked
+    %li
+      = link_to 'Dashboard', feeds_path
+    %li
+      = link_to 'My Profile', my_profile_path
+    %li
+      = link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to logout?'}
+  %br
+
+.sidebar-new-feed
+  =form_tag create_feed_url do
+    %h4 Subscribe To A New Feed
+    =label_tag :url, "Enter your feed URL here:"
+    =text_field_tag :url, params[:url], :placeholder => "Enter URL here"
+    =label_tag :category, "Tag Your Feed Here:"
+    =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category"
+    %br
+    =submit_tag "Submit", class: "btn-info"
 
