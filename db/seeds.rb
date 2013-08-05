@@ -9,3 +9,5 @@
 #Salman: Make sure you have a user_id = '1', as it sets all the values to that user.
 # ['http://1000awesomethings.com/','http://edition.cnn.com/', '']
 # @feed = RSSReader.new.create_rss_feed(url)
+
+User.create! email: 'admin@rss.com', first_name: 'Admin', role: 'admin', password: 'password', password_confirmation: 'password'

@@ -1,8 +1,7 @@
-
-
 class FeedsController < ApplicationController
 
 before_filter :authenticate_user!
+load_and_authorize_resource
 
   def index
     @userfeeds = FeedUser.where(user_id: current_user.id)
