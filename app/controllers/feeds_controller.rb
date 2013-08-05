@@ -66,7 +66,6 @@ before_filter :authenticate_user!
   def update
     @feed = Feed.find(params[:id])
     @feed.update_attributes(params[:feed])
-    @feed.save
     redirect_to feeds_path
   end
 

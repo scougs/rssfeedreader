@@ -26,9 +26,7 @@
 .sidebar-new-feed
   =form_tag create_feed_url do
     %h4 Subscribe To A New Feed
-    =label_tag :url, "Enter your feed URL here:"
     =text_field_tag :url, params[:url], :placeholder => "Enter URL here"
-    =label_tag :category, "Tag Your Feed Here:"
     =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category"
     %br
     =submit_tag "Submit", class: "btn-info"
