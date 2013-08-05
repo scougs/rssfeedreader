@@ -23,23 +23,28 @@ class RSSReader
         doc = try_open(url)
 
         return nil if doc.nil?
-        binding.pry
+        binding.pry if DEBUG
 
         if(doc.content_type == "text/html")
             url=extract_rss_feed(doc)
             puts Time.now-time
         end
 
-        @feed=Feed.where(url: url).first
 
-        binding.pry
+        binding.pry if DEBUG
         open(url) do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
 
+
             puts "Time to parse a url feed is #{Time.now-time}"
             @type=feed_stream.feed_type
             if (@type == "atom")
+
+                @feed=Feed.where(title: feed_stream.title.content).first
+                binding.pry if DEBUG
+                return @feed if(@feed)
+
                 attributes = {
                     title: feed_stream.title.content,
                     feed_url: feed_stream.link.href,
@@ -52,6 +57,11 @@ class RSSReader
                 atom_create_entries(feed_stream, @feed)
                 # do atom protocols
             elsif(@type == "rss")
+
+
+                @feed=Feed.where(title: feed_stream.channel.title).first
+                binding.pry if DEBUG
+                return @feed if(@feed)
 
                 # do rss protocols
                 attributes = {

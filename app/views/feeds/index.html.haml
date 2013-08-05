@@ -17,9 +17,11 @@
     -arr_userfeeds.each do |userfeed|
 
       %li=link_to "#{userfeed.feed.title}", controller: "feeds", action: "show", id: userfeed.feed.id
+      = button_tag 'Delete feed', class: "delete_feed", data: {userfeed_id: "#{userfeed.id}"}
       %ul
-        -userfeed.feed.entries do |entry|
-          %li=entry.title
+        / -userfeed.feed.entries.each do |entry|
+        /   %li=entry.title
+        /   %li=entry.summary
 
 
 

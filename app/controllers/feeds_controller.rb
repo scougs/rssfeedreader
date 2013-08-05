@@ -6,10 +6,14 @@ before_filter :authenticate_user!
 
   def index
     @userfeeds = FeedUser.where(user_id: current_user.id)
-
+    binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
     # binding.pry
     # @feeds = Feed.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.js
+    end
   end
 
   # def index
@@ -37,11 +41,12 @@ before_filter :authenticate_user!
   end
 
   def create
+    # Fix make sure i can find by a parsed url
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.
     @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
     @user = User.find(current_user.id)
-    binding.pry
+    binding.pry if DEBUG
     if (@feed == nil)
       @feed = RSSReader.new.create_rss_feed(url)
        if(@feed != nil)
@@ -50,7 +55,7 @@ before_filter :authenticate_user!
         return redirect_to feeds_path
       end
     end
-
+    binding.pry if DEBUG
     attributes = {
       feed_id: @feed.id,
       user_id: @user.id,
@@ -59,7 +64,7 @@ before_filter :authenticate_user!
 
     FeedUser.create(attributes)
     # @feed = Feed.new(params[:feed])
-    binding.pry
+
     redirect_to feeds_path
   end
 
