@@ -24,6 +24,7 @@ class RSSReader
 
         return nil if doc.nil?
         binding.pry if DEBUG
+        #binding.pry
 
         if(doc.content_type == "text/html")
             url=extract_rss_feed(doc)
@@ -32,6 +33,7 @@ class RSSReader
 
 
         binding.pry if DEBUG
+        #binding.pry
         open(url) do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
@@ -74,7 +76,7 @@ class RSSReader
                     @feed = Feed.create(attributes)
                 rss_create_entries(feed_stream, @feed)
             end
-            binding.pry if false
+            #binding.pry if false
         end
         puts Time.now-time
         return @feed

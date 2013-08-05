@@ -13,3 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function() {
+
+  $('a.toggle-sidebar').click(function() {
+    //$('a.toggles').toggleClass('icon-chevron-left icon-chevron-right');
+
+    $('.sidebar').animate({
+        width: 'toggle'
+      }, 000);
+    $('.main').toggleClass('span7 offset1');
+    $('.main').toggleClass('span12');
+    $('.main').toggleClass('no-sidebar');
+  });
+
+});

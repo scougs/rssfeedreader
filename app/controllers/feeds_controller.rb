@@ -8,7 +8,7 @@ before_filter :authenticate_user!
     @userfeeds = FeedUser.where(user_id: current_user.id)
     binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
-    # binding.pry
+    #binding.pry
     # @feeds = Feed.all
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +46,11 @@ before_filter :authenticate_user!
     # Todo: Check if the xml url is available rather then homepage.
     @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
     @user = User.find(current_user.id)
+<<<<<<< HEAD
     binding.pry if DEBUG
+=======
+    #binding.pry
+>>>>>>> 0251ffe034bf43e741a54bd5d10a313b8f58015c
     if (@feed == nil)
       @feed = RSSReader.new.create_rss_feed(url)
        if(@feed != nil)
@@ -64,14 +68,17 @@ before_filter :authenticate_user!
 
     FeedUser.create(attributes)
     # @feed = Feed.new(params[:feed])
+<<<<<<< HEAD
 
+=======
+    #binding.pry
+>>>>>>> 0251ffe034bf43e741a54bd5d10a313b8f58015c
     redirect_to feeds_path
   end
 
   def update
     @feed = Feed.find(params[:id])
     @feed.update_attributes(params[:feed])
-    @feed.save
     redirect_to feeds_path
   end
 
