@@ -21,7 +21,7 @@ $(function() {
 
     $('.sidebar').animate({
         width: 'toggle'
-      }, 000);
+      }, 0);
     $('.main').toggleClass('span12 span7.offset1');
     $('.main').toggleClass('no-sidebar');
   });
