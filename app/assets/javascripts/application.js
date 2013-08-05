@@ -17,11 +17,15 @@
 $(function() {
 
   $('a.toggle-sidebar').click(function() {
-    //$('a.toggles').toggleClass('icon-chevron-left icon-chevron-right');
 
     $('.sidebar').animate({
         width: 'toggle'
       }, 000);
+
+    var text = $('#sidebar-toggle-button').text();
+    $('#sidebar-toggle-button').text(
+      text == "Hide Sidebar" ? "Show Sidebar" : "Hide Sidebar");
+
     $('.main').toggleClass('span7 offset1');
     $('.main').toggleClass('span12');
     $('.main').toggleClass('no-sidebar');

@@ -21,4 +21,5 @@ class FeedUser < ActiveRecord::Base
     end
     return hash_userfeeds
   end
+
 end

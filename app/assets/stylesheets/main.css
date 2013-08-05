@@ -35,8 +35,13 @@
 
 /* USER DETAILS */
 
-.user-details-left {
-
+.user-feed {
+  padding: 8px;
+  border: 1px;
+  border-color: #ddd;
+  border-style: solid;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
 }
 
 a.toggle-sidebar {

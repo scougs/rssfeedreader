@@ -1,0 +1,24 @@
+.user-feeds
+  %h2 Your current feeds
+  %br
+
+  -current_user.user_categories_and_feeds.each do |key, value|
+    %h3
+      = key
+
+    -value.each do |feeduser|
+      .user-feed
+        %h4
+          = feeduser.feed.title
+        %p
+          %strong
+            Last Updated:
+          = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+        %p
+          %strong
+            Private Feed:
+          =feeduser.is_private.to_s.capitalize
+      %br
+    
+      
+      

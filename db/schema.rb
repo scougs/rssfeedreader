@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803150420) do
+ActiveRecord::Schema.define(:version => 20130805161853) do
 
   create_table "entries", :force => true do |t|
     t.string   "title"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20130803150420) do
   create_table "feed_users", :force => true do |t|
     t.integer  "feed_id"
     t.integer  "user_id"
-    t.boolean  "private"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "is_private", :default => true, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "category"
   end
 
