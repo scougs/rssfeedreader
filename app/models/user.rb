@@ -14,15 +14,26 @@ class User < ActiveRecord::Base
 
   has_many :entries, through: :entry_user
 
-  attr_accessible :bio, :email, :first_name, :last_name, :photo, :role, :password, :password_confirmation, :remember_me
+  attr_accessible :role, :bio, :email, :first_name, :last_name, :photo, :password, :password_confirmation, :remember_me
 
+  before_validation :set_default_role
 
   def get_feeds
-    #binding.pry
+
   end
 
-  def user_categories_and_feeds
+  def role?(role)
+    self.role == role
+  end
+  #Salman: user_categories and feeds was in private, messing up stuff.
+   def user_categories_and_feeds
     feed_users.includes(:feed).group_by(&:category)
   end
 
+  private
+  def set_default_role
+    self.role ||= "basic_user"
+  end
+
 end
+

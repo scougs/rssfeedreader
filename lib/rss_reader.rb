@@ -38,8 +38,6 @@ class RSSReader
         open(url) do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
-
-
             puts "Time to parse a url feed is #{Time.now-time}"
             @type=feed_stream.feed_type
             if (@type == "atom")
@@ -70,7 +68,8 @@ class RSSReader
                 attributes = {
                     title: feed_stream.channel.title,
                     feed_url: url,
-                    url: feed_stream.channel.link,
+                    url: feed_stream.generator.uri,
+                    # perhaps fix this to pubDate
                     last_modified: feed_stream.channel.lastBuildDate
                 }
 

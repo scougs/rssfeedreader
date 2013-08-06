@@ -1,14 +1,14 @@
-
-
 class FeedsController < ApplicationController
 
 before_filter :authenticate_user!
+load_and_authorize_resource
 
   def index
     @userfeeds = FeedUser.where(user_id: current_user.id)
     binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
-    #binding.pry
+
+    # binding.pry
     # @feeds = Feed.all
     respond_to do |format|
       format.html # index.html.erb
@@ -41,12 +41,12 @@ before_filter :authenticate_user!
   end
 
   def create
+    binding.pry
     # Fix make sure i can find by a parsed url
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.
     @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
     @user = User.find(current_user.id)
-    binding.pry if DEBUG
     if (@feed == nil)
       @feed = RSSReader.new.create_rss_feed(url)
        if(@feed != nil)
