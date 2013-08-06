@@ -4,7 +4,6 @@ Rssreader::Application.routes.draw do
 
   resources :feeds
   post '/feeds', to: 'feeds#create', as: 'create_feed'
-  get '/feeds', to: 'feeds#index', format: 'json'
 
   resources :posts
   resources :users

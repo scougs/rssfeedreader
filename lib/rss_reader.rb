@@ -34,6 +34,7 @@ class RSSReader
 
         binding.pry if DEBUG
         #binding.pry
+        return nil if url.nil?
         open(url) do |rss|
             time = Time.now
             feed_stream = RSS::Parser.parse(rss)
