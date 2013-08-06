@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
   end
 
 
@@ -42,21 +41,17 @@ class UsersController < ApplicationController
     end
   end
 
-
-    def destroy
-      @user = User.find(params[:id])
-      if @user.destroy
-        redirect_to users_path, alert: 'User successfully deleted'
-      else
-        redirect_to user
-      end
-
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to users_path, alert: 'User successfully deleted'
+    else
+      redirect_to user
     end
+  end
 
-
-
-    def my_profile
-      @user = current_user
-      render :show
-    end
-end
+#   def my_profile
+#     @user = current_user
+#     render :show
+#   end
+# end

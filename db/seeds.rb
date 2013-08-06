@@ -10,4 +10,6 @@
 # ['http://1000awesomethings.com/','http://edition.cnn.com/', '']
 # @feed = RSSReader.new.create_rss_feed(url)
 
+User.delete_all
+
 User.create! email: 'admin@rss.com', first_name: 'Admin', role: 'admin', password: 'password', password_confirmation: 'password'
