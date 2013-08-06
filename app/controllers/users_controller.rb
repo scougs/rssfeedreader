@@ -50,8 +50,9 @@ class UsersController < ApplicationController
     end
   end
 
-#   def my_profile
-#     @user = current_user
-#     render :show
-#   end
-# end
+  def my_profile
+    @user = current_user
+    render :show
+  end
+end
+

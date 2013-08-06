@@ -11,19 +11,13 @@ def initialize(user)
             can :create, Feed
             can [:manage, :"my_profile"], User do |u|
                 u.id == user.id
-             # binding.pry
             end
-            # can :show, :my_profile
-            # binding.pry
-            can [:read, :edit, :update, :destroy], FeedUser do |feeduser|
+            can [:edit, :update, :destroy], FeedUser do |feeduser|
                 feeduser.user_id == user.id
             end
-            can [:read, :edit, :update, :destroy], EntryUser do |entryuser|
+            can [:edit, :update, :destroy], EntryUser do |entryuser|
                 entryuser.user_id == user.id
             end
-            # can [:read, :edit, :update, :destroy], User do |user|
-            #     user_id == user.id
-            # end
         else
             can :manage, User
         end

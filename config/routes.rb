@@ -6,7 +6,7 @@ Rssreader::Application.routes.draw do
   post '/feeds', to: 'feeds#create', as: 'create_feed'
 
   resources :posts
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :show]
 
   get '/my_profile', to: 'users#my_profile', as: :my_profile
 

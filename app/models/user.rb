@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   before_validation :set_default_role
 
   def get_feeds
-    binding.pry
+
   end
 
   def role?(role)
