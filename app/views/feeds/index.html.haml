@@ -16,7 +16,8 @@
     %h3=category
     -arr_userfeeds.each do |userfeed|
 
-      %li=link_to "#{userfeed.feed.title}", controller: "feeds", action: "show", id: userfeed.feed.id
+      %li
+        =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
       = button_tag 'Delete feed', class: "delete_feed", data: {userfeed_id: "#{userfeed.id}"}
       %ul
         / -userfeed.feed.entries.each do |entry|

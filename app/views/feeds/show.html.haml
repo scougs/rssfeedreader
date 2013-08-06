@@ -2,9 +2,10 @@
 %h4="Last Modified at: #{@feed.last_modified}"
 %ul
   -@feed.entries.each do |entry|
-    %li(style="list-style-type: none;")
+    %li{class:"entry",style:"list-style-type: none;"}
       %h3=entry.title
       %h4=entry.author
       %h5=entry.published
-      %h5= Nokogiri::HTML(entry.content).to_str
-      =link_to "Read Article", entry.url, data: { confirm: "Are you sure?" }
+      %div{id: entry.guid,class: "hide"}
+        %h5= raw entry.content
+        =link_to "Read Article", entry.url, data: { confirm: "Are you sure?" }
