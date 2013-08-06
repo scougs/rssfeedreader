@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     self.role == role
   end
 
+
   private
   def set_default_role
     self.role ||= "basic_user"

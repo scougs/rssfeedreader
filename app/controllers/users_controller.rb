@@ -53,10 +53,12 @@ class UsersController < ApplicationController
 
     end
 
+    def current_user
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
 
-  def my_profile
-    @user = current_user
-    render :show
-  end
-
+    def my_profile
+      @user = current_user
+      render :show
+    end
 end
