@@ -29,6 +29,6 @@ $(function() {
     $('.main').toggleClass('span7 offset1');
     $('.main').toggleClass('span12');
     $('.main').toggleClass('no-sidebar');
-  });
+    });
 
 });

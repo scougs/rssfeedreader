@@ -3,22 +3,37 @@
   %br
 
   -current_user.user_categories_and_feeds.each do |key, value|
-    %h3
-      = key
+    .user-feed-group
+      %h3
+        = key
 
-    -value.each do |feeduser|
-      .user-feed
-        %h4
-          = feeduser.feed.title
-        %p
-          %strong
-            Last Updated:
-          = feeduser.feed.last_modified.strftime("%a %d %b %Y")
-        %p
-          %strong
-            Private Feed:
-          =feeduser.is_private.to_s.capitalize
-      %br
-    
+      -value.each do |feeduser|
+        .user-feed-outer
+          %p.feedurl
+            = feeduser.feed.url
+          %h4
+            = feeduser.feed.title
+          %p.lastupdate
+            %strong
+              Last Updated:
+            = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+          .user-feed-inner.clearfix
+            .user-feed-inner-left
+              %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
+                %input{:type => "submit", :value => "Update Category", :id => "submit-category-update", :class => "btn-mini btn-info", }
+
+            .user-feed-inner-right
+              -if feeduser.is_private.to_s == "true"
+                %a.toggle-private{:href => "#"}
+                  %p.btn.btn-mini.btn-success#private-toggle-button Make Public
+              -else
+                %a.toggle-private{:href => "#"}
+                  %p.btn.btn-mini.btn-warning#private-toggle-button Make Private
+
+              %a.delete-feed{:href => "#"}
+                %p.btn.btn-mini.btn-danger#delete-feed-button Unsubscribe
+
+        %br
+      
       
       
