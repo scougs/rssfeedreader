@@ -19,8 +19,6 @@ Rssreader::Application.routes.draw do
 
   get '/my_profile', to: 'users#my_profile', as: :my_profile
 
-devise_scope :user do
-  root to: "devise/sessions#new"
-end
+  root to: "home#home"
 
 end
