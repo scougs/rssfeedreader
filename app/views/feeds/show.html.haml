@@ -6,6 +6,6 @@
       %h3=entry.title
       %h4=entry.author
       %h5=entry.published
-      %div{id: entry.guid,class: ""}
+      %div{id: entry.guid,class: "hide"}
         =link_to "Read Article", entry.url, data: { confirm: "Are you sure?" }
         %h5=raw entry.content
