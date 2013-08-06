@@ -31,4 +31,18 @@ $(function() {
     $('.main').toggleClass('no-sidebar');
     });
 
+
+  $('.reader-view').click(function() {
+    
+    console.log("click")
+
+    $('.sidebar').animate({
+        width: 'toggle'
+      }, 000);
+
+    $('.main').toggleClass('span7 offset1');
+    $('.main').toggleClass('span12');
+    $('.main').toggleClass('no-sidebar');
+    });
+
 });

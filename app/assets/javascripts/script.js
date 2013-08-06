@@ -24,7 +24,6 @@ $(function(){
   })
 
   $('.entry').find('h3').click(function() {
-    debugger
     var parent=$(this).parent();
     parent.find("div").first().toggleClass("hide");
     var entry_id=console.log(parent.data('entry-id'));

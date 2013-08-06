@@ -1,0 +1,17 @@
+.entry-view
+  
+  .entry-view-header
+    %p.entry-view-entry-url
+      =@entry.feed.url
+
+    %h1.entry-view-entry-title
+      =@entry.title
+
+    %p.entry-view-entry-info
+      =@entry.author
+      wrote this on
+      =@entry.published.strftime("%a %d %b %Y")
+      
+
+  .entry-view-body
+    =raw @entry.content

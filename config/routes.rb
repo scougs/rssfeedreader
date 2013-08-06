@@ -7,6 +7,7 @@ Rssreader::Application.routes.draw do
 
   resources :posts
 
+  resources :entries, only: [:show]
 
   resources :users, only: [:edit, :update, :show]
   resources :feed_users do
