@@ -1,36 +1,56 @@
 .user-feeds
-  %h2 Your current feeds
-  %br
+  -if current_user == @user
+    %h2 Your current feeds
+    %br
 
-  -current_user.user_categories_and_feeds.each do |key, value|
-    .user-feed-group
-      %h3
-        = key
+    -current_user.user_categories_and_feeds.each do |key, value|
+      .user-feed-group
+        %h3
+          = key
 
-      -value.each do |feeduser|
-        .user-feed-outer
-          %p.feedurl
-            = feeduser.feed.url
-          %h4
-            = feeduser.feed.title
-          %p.lastupdate
-            %strong
-              Last Updated:
-            = feeduser.feed.last_modified.strftime("%a %d %b %Y")
-          .user-feed-inner.clearfix
-            .user-feed-inner-left
-              %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
-                %input{:type => "submit", :value => "Update Category", :class => "submit-category-update btn-mini btn-info", data: {userfeed_id: "#{feeduser.id}"} }
+        -value.each do |feeduser|
+          .user-feed-outer
+            %p.feedurl
+              = feeduser.feed.url
+            %h4
+              = feeduser.feed.title
+            %p.lastupdate
+              %strong
+                Last Updated:
+              = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+            .user-feed-inner.clearfix
+              .user-feed-inner-left
+                %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
+                  %input{:type => "submit", :value => "Update Category", :class => "submit-category-update btn-mini btn-info", data: {userfeed_id: "#{feeduser.id}"} }
 
-            .user-feed-inner-right
-              -if feeduser.is_private.to_s == "true"
-                = link_to "Mark Public", {}, class: "public-toggle-button btn btn-mini btn-success", data: {userfeed_id: "#{feeduser.id}"}
-              -else
-                %a.toggle-private{:href => "#"}
-                = link_to "Mark Private", {}, class: "private-toggle-button btn btn-mini btn-warning", data: {userfeed_id: "#{feeduser.id}"}
+              .user-feed-inner-right
+                -if feeduser.is_private.to_s == "true"
+                  = link_to "Mark Public", {}, class: "public-toggle-button btn btn-mini btn-success", data: {userfeed_id: "#{feeduser.id}"}
+                -else
+                  %a.toggle-private{:href => "#"}
+                  = link_to "Mark Private", {}, class: "private-toggle-button btn btn-mini btn-warning", data: {userfeed_id: "#{feeduser.id}"}
 
-              = link_to "Unsubscribe", {}, id: "delete-feed-button" ,class: "delete_feed btn btn-mini btn-danger", data: {userfeed_id: "#{feeduser.id}"}
+                = link_to "Unsubscribe", {}, id: "delete-feed-button" ,class: "delete_feed btn btn-mini btn-danger", data: {userfeed_id: "#{feeduser.id}"}
 
-        %br
-      
-      
+          %br
+  -else
+    %h2 User Feeds
+    %br
+    -@user.user_categories_and_feeds.each do |key, value|
+      .user-feed-group
+        %h3
+          = key
+
+        -value.each do |feeduser|
+          -if feeduser.is_private.to_s == "true"
+            .user-feed-outer
+              %p.feedurl
+                = feeduser.feed.url
+              %h4
+                = feeduser.feed.title
+              %p.lastupdate
+                %strong
+                  Last Updated:
+                = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+            %br
+          -else

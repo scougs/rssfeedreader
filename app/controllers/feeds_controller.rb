@@ -41,7 +41,7 @@ load_and_authorize_resource
   end
 
   def create
-    binding.pry
+
     # Fix make sure i can find by a parsed url
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.

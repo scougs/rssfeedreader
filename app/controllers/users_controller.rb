@@ -54,5 +54,10 @@ class UsersController < ApplicationController
     @user = current_user
     render :show
   end
+
+  def profile
+    @user = User.find(params[:id])
+    render :profile
+  end
 end
 
