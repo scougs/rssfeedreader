@@ -20,20 +20,17 @@
           .user-feed-inner.clearfix
             .user-feed-inner-left
               %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
-                %input{:type => "submit", :value => "Update Category", :id => "submit-category-update", :class => "btn-mini btn-info", }
+                %input{:type => "submit", :value => "Update Category", :class => "submit-category-update btn-mini btn-info", data: {userfeed_id: "#{feeduser.id}"} }
 
             .user-feed-inner-right
               -if feeduser.is_private.to_s == "true"
-                %a.toggle-private{:href => "#"}
-                  %p.btn.btn-mini.btn-success#private-toggle-button Make Public
+                = link_to "Mark Public", {}, class: "public-toggle-button btn btn-mini btn-success", data: {userfeed_id: "#{feeduser.id}"}
               -else
                 %a.toggle-private{:href => "#"}
-                  %p.btn.btn-mini.btn-warning#private-toggle-button Make Private
+                = link_to "Mark Private", {}, class: "private-toggle-button btn btn-mini btn-warning", data: {userfeed_id: "#{feeduser.id}"}
 
-              %a.delete-feed{:href => "#"}
-                %p.btn.btn-mini.btn-danger#delete-feed-button Unsubscribe
+              = link_to "Unsubscribe", {}, id: "delete-feed-button" ,class: "delete_feed btn btn-mini btn-danger", data: {userfeed_id: "#{feeduser.id}"}
 
         %br
-      
       
       

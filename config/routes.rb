@@ -7,7 +7,11 @@ Rssreader::Application.routes.draw do
 
   resources :posts
   resources :users
-  resources :feed_users
+  resources :feed_users do
+    member do
+      put :update_category
+    end
+  end
 
   get '/my_profile', to: 'users#my_profile', as: :my_profile
 

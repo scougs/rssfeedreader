@@ -124,6 +124,10 @@
   margin-top: 5px;
 }
 
+#delete-feed-button, .public-toggle-button, .private-toggle-button, .submit-category-update {
+  margin-top: 5px;  
+}
+
 .feedurl {
   color: #8d8d8d;
   font-size: 0.85em;
