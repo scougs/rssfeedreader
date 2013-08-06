@@ -28,13 +28,13 @@ $(function(){
     parent.find("div").toggleClass("hide");
     var entry_id=console.log(parent.data('entry-id'));
     console.log(this)
-    $.ajax({
-      type: "POST",
-      url: "/entry_users",
-      data:  entry_id,
-      }).done(function( msg ) {
+    // $.ajax({
+    //   type: "POST",
+    //   url: "/entry_users",
+    //   data:  entry_id,
+    //   }).done(function( msg ) {
 
-         });
+    //      });
   });
 
 //PUBLIC AND PRIVATE FEED UPDATE
@@ -83,10 +83,5 @@ $(function(){
 
   });
 
-
-
-  $('.entry').click(function() {
-    $(this).find("div").toggleClass("hide");
-  })
 
 })
