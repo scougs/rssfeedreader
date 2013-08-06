@@ -8,7 +8,7 @@ Rssreader::Application.routes.draw do
   resources :posts
   resources :users
   resources :feed_users
-
+  resources :entry_users
   get '/my_profile', to: 'users#my_profile', as: :my_profile
 
   root to: "home#home"

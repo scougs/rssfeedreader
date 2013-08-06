@@ -2,7 +2,7 @@
 %h4="Last Modified at: #{@feed.last_modified}"
 %ul
   -@feed.entries.each do |entry|
-    %li{class:"entry",style:"list-style-type: none;"}
+    %li{class:"entry",style:"list-style-type: none;", :data => {:entry_id => entry.id}}
       %h3=entry.title
       %h4=entry.author
       %h5=entry.published

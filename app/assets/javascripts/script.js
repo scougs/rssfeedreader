@@ -6,7 +6,7 @@ $(function(){
     }
   });
   $('.delete_feed').click(function(){
-    user_feed_id = $(this).data('userfeed-id');
+    var user_feed_id = $(this).data('userfeed-id');
     //ajax stuff
     // once ajax request returns , then ->
     $.ajax({
@@ -19,8 +19,18 @@ $(function(){
     $('#'+user_feed_id).parent().remove();
   })
 
-  $('.entry').click(function() {
-    $(this).find("div").toggleClass("hide");
-  })
+  $('.entry').find('h3').click(function() {
+    var parent=$(this).parent();
+    parent.find("div").toggleClass("hide");
+    var entry_id=console.log(parent.data('entry-id'));
+    console.log(this)
+    $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:  entry_id,
+      }).done(function( msg ) {
+
+         });
+  });
 
 })
