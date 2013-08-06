@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
 
 
   def get_feeds
-    binding.pry
+    #binding.pry
   end
+
+  def user_categories_and_feeds
+    feed_users.includes(:feed).group_by(&:category)
+  end
+
 end
