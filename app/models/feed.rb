@@ -10,4 +10,5 @@ class Feed < ActiveRecord::Base
   def self.create_feed(url)
     return RSSReader.create_rss_feed(url)
   end
+  
 end

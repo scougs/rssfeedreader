@@ -25,11 +25,15 @@ class User < ActiveRecord::Base
   def role?(role)
     self.role == role
   end
-
+  #Salman: user_categories and feeds was in private, messing up stuff.
+   def user_categories_and_feeds
+    feed_users.includes(:feed).group_by(&:category)
+  end
 
   private
   def set_default_role
     self.role ||= "basic_user"
   end
+
 end
 

@@ -1,20 +1,27 @@
-.user_details
-  = form_for(@user) do |f|
-    = render 'shared/error_message' , object: @user
-    .field
-      = f.label :first_name
-      = f.text_field :first_name
-    .field
-      = f.label :last_name
-      = f.text_field :last_name
-    .field
-      = f.label :email
-      = f.text_field :email
-    .field
-      = f.label :bio
-      = f.text_field :bio
-    .field
-      = f.label :photo
-      = f.file_field :photo
-    %br
-    = f.submit submit_button_value, class: 'btn btn-success'
+.userdetails
+  %h1 Your Details
+  = render 'shared/alert_message'
+  .row-fluid
+    .span4.user-details-left
+      = image_tag @user.photo.detail.url, class: "img-polaroid"
+      %br
+      %br
+      
+      =button_to 'Edit Details',  edit_user_path(@user), { method: "get", class: "btn btn-info" }
+      =button_to 'Delete User',@user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    .span4.offset1.user-details-right
+      %h4 First Name
+      %p 
+        =@user.first_name
+      %br
+      %h4 Last Name
+      %p 
+        =@user.last_name
+      %br
+      %h4 Email
+      %p 
+        =@user.email
+      %br
+      %h4 User Bio
+      %p 
+        =@user.bio

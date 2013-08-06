@@ -69,6 +69,7 @@ class RSSReader
                     title: feed_stream.channel.title,
                     feed_url: url,
                     url: feed_stream.generator.uri,
+                    # perhaps fix this to pubDate
                     last_modified: feed_stream.channel.lastBuildDate
                 }
 

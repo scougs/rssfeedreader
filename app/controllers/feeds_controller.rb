@@ -4,7 +4,6 @@ before_filter :authenticate_user!
 load_and_authorize_resource
 
   def index
-
     @userfeeds = FeedUser.where(user_id: current_user.id)
     binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
@@ -42,6 +41,7 @@ load_and_authorize_resource
   end
 
   def create
+    binding.pry
     # Fix make sure i can find by a parsed url
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.
