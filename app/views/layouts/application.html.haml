@@ -7,7 +7,9 @@
     = csrf_meta_tags
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"}
     %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-%body
+    %link{:href => "http://fonts.googleapis.com/css?family=Lora|Roboto+Slab:400,300", :rel => "stylesheet", :type => "text/css"}
+    
+%body{class: "#{'sidebar-hidden' if @sidebar_hidden}"}
   .container
     -if current_user
       .row-fluid
@@ -23,4 +25,3 @@
       .row-fluid
         .main.span12
           = yield
-

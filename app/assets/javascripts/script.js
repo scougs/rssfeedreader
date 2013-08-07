@@ -23,6 +23,7 @@ $(function(){
 //TODO: Stop page refresh
   })
 
+
 //// Entry functionality////
     $('.hide-content').click(function() {
     var parent=$(this).parent();

@@ -8,8 +8,12 @@
       %h3{class: "entry-title"}=entry.title
       %h4=entry.author
       %h5=entry.published
+
       %div{id: entry.guid,class: "content hide"}
-        =link_to "Read Article", entry.url, data: { confirm: "Are you sure?" }
+        =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
+        |
+        =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
+        |
         =link_to "Mark UnRead", {remote: true}, class:"unread home-right", style: "text-align: right;"
         %p
         = render partial: 'twitter',object: @twitter
