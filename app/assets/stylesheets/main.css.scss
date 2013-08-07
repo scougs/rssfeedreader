@@ -13,18 +13,39 @@
 /* HOMEPAGE */
 
 .front-page {
-  background: image-url('rss-icon.jpg') no-repeat center;
+  // background: image-url('rss-icon.jpg') no-repeat center;
 }
 
-.home-logo {
+.home-page-heading {
+  text-align: center;
+}
+
+.home-page-body {
+  padding-top: 70px;
 }
 
 .home-left {
+  padding-right: 80px;
   float: left;
+  h2{
+    margin-bottom: 20px; 
+  }
+}
+
+.home-text {
+  color: #666666;
+  font-size: 1.2em;
 }
 
 .home-right {
+  margin-left: 0 !important;
+  border-left: 1px solid #bfbfbf;
+  padding-left: 102px;
   float: right;
+}
+
+.home-left-inner{
+  min-height: 132px;
 }
 
 #user_email, #user_password {
@@ -37,7 +58,7 @@
   -webkit-box-shadow: 0 0 0 #000,inset 0px 3px 3px #eee;
 }
 
-.sign-in-button {
+.sign-in-button, .sign-up-button {
   width: 357px !important;
   padding-top: 6px;
   padding-bottom: 6px;

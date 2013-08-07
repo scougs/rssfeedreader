@@ -16,7 +16,7 @@
 
 $(function() {
 
-  $('a.toggle-sidebar').click(function() {
+  var toggleSidebar = function() {
 
     $('.sidebar').animate({
         width: 'toggle'
@@ -29,20 +29,16 @@ $(function() {
     $('.main').toggleClass('span7 offset1');
     $('.main').toggleClass('span12');
     $('.main').toggleClass('no-sidebar');
-    });
+    }
+
+  $('a.toggle-sidebar').click(toggleSidebar);
+
+  if ($('body').hasClass('sidebar-hidden')) {
+    toggleSidebar();
+  }
 
 
-  $('.reader-view').click(function() {
-    
-    console.log("click")
 
-    $('.sidebar').animate({
-        width: 'toggle'
-      }, 000);
 
-    $('.main').toggleClass('span7 offset1');
-    $('.main').toggleClass('span12');
-    $('.main').toggleClass('no-sidebar');
-    });
 
 });

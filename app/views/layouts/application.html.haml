@@ -9,7 +9,7 @@
     %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
     %link{:href => "http://fonts.googleapis.com/css?family=Lora|Roboto+Slab:400,300", :rel => "stylesheet", :type => "text/css"}
     
-%body
+%body{class: "#{'sidebar-hidden' if @sidebar_hidden}"}
   .container
     -if current_user
       .row-fluid
@@ -25,4 +25,3 @@
       .row-fluid
         .main.span12
           = yield
-
