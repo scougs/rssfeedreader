@@ -17,7 +17,8 @@
             %p.lastupdate
               %strong
                 Last Updated:
-              = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+              -if feeduser.feed.last_modified
+                = feeduser.feed.last_modified.strftime("%a %d %b %Y")
             .user-feed-inner.clearfix
               .user-feed-inner-left
                 %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
@@ -32,7 +33,6 @@
 
                 = link_to "Unsubscribe", {}, id: "delete-feed-button" ,class: "delete_feed btn btn-mini btn-danger", data: {userfeed_id: "#{feeduser.id}"}
 
-          %br
   -else
     %h2 User Feeds
     %br

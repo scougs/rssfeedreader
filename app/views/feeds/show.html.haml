@@ -1,25 +1,38 @@
-%h1=@feed.title
-%h4="Last Modified at: #{@feed.last_modified}"
+%h2=@feed.title
+-if @feed.last_modified
+  %p="Last updated on: #{@feed.last_modified.strftime("%a %d %b %Y")}"
+
 %ul
   -@twitter = {}
+
   -@feed.entries.each do |entry|
     -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
-    %li{class:"entry",style:"list-style-type: none;", :data => {:entry_id => entry.id}}
+
+    %li{class: "entry",style:"list-style-type: none;", :data => {:entry_id => entry.id}}
       %h3{class: "entry-title"}=entry.title
-      %h4=entry.author
-      %h5=entry.published
 
       %div{id: entry.guid,class: "content hide"}
         =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
         |
         =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
         |
-        =link_to "Mark UnRead", {remote: true}, class:"unread home-right", style: "text-align: right;"
-        %p
+        =link_to "Mark UnRead", {remote: true}, style: "text-align: right;"
+        |
+        =link_to "Archive", {remote: true}
+        |
+        =link_to "Hide", {remote: true}, class: "hide-content"
+        |
+        =link_to "Favourite", {remote: true}, :data => {:entry_id => entry.id}, class: "favourite"
+        |
         = render partial: 'twitter',object: @twitter
-        =link_to "Archive", {remote: true}, class:"archive home-right", style: "text-align: right;"
-        =link_to "Hide", {remote: true}, class:"hide-content home-left"
-        %span{class: 'home-right'}="---"
-        =link_to "Favourite", {remote: true}, class:"favourite home-right", style: "text-align: right;"
         %br
-        %h5=raw entry.content
+        %br
+        
+
+        %p
+          =entry.author
+          wrote this on 
+          =entry.published.strftime("%a %d %b %Y")
+        %br
+          
+        %p=raw entry.content
