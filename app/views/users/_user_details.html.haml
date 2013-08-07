@@ -1,6 +1,8 @@
 .userdetails
   -if current_user == @user
     %h1 Your Details
+    %br
+    
     = render 'shared/alert_message'
     .row-fluid
       .span4.user-details-left
@@ -10,22 +12,23 @@
 
         =button_to 'Edit Details',  edit_user_path(@user), { method: "get", class: "btn btn-info" }
         =button_to 'Delete User',@user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
-      .span4.offset1.user-details-right
-        %h4 First Name
-        %p
-          =@user.first_name
-        %br
-        %h4 Last Name
-        %p
-          =@user.last_name
-        %br
-        %h4 Email
-        %p
-          =@user.email
-        %br
-        %h4 User Bio
-        %p
-          =@user.bio
+
+      .span7.offset1.user-details-right
+        .user-details-name.clearfix
+          .user-details-name-left
+            %h4 First Name
+            %p
+              =@user.first_name
+          .user-details-name-right
+            %h4 Last Name
+            %p
+              =@user.last_name
+
+        .user-details-bio.clearfix
+          %h4 User Bio
+          %p
+            =@user.bio
+
   -else
     %h1 Your Details
     = render 'shared/alert_message'
@@ -35,14 +38,17 @@
         %br
         %br
       .span4.offset1.user-details-right
-        %h4 First Name
-        %p
-          =@user.first_name
-        %br
-        %h4 Last Name
-        %p
-          =@user.last_name
-        %br
-        %h4 User Bio
-        %p
-          =@user.bio
+        .user-details-name
+          .user-details-name-left
+            %h4 First Name
+            %p
+              =@user.first_name
+          .user-details-name-right
+            %h4 Last Name
+            %p
+              =@user.last_name
+
+        .user-details-bio
+          %h4 User Bio
+          %p
+            =@user.bio

@@ -1,0 +1,31 @@
+.user-favorites
+  %h2 Your favourite posts
+  %br
+  -@twitter = {}
+  -current_user.user_favorite_entries.each do |favorite|
+
+    -@twitter[:title] = favorite.title; @twitter[:url] = favorite.url;
+
+    .user-feed-outer{id: "fav#{favorite.id}"}
+      %h4
+        =favorite.title
+      %p
+        - if favorite.author
+          =favorite.author
+          wrote this on
+          = favorite.published.strftime("%a %d %b %Y")
+        - else
+          Published on 
+          = favorite.published.strftime("%a %d %b %Y")
+
+      .user-feed-inner.clearfix
+        .user-feed-inner-left
+          %p
+            =link_to "Un-favourite", {remote: true}, :data => {:entry_id => favorite.id}, class: "unfavourite"
+            |
+            =link_to "Read", entry_path(favorite.id), class: "reader-view"
+            |
+            =link_to "View Original", favorite.url, data: { confirm: "Are you sure?" }
+        .user-feed-inner-right  
+          = render partial: 'feeds/twitter',object: @twitter
+      

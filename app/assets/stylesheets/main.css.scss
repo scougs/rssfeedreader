@@ -9,6 +9,15 @@
   padding-top: 50px;
 }
 
+.main {
+  padding-top: 40px;
+}
+
+.twitter-share-button {
+  margin-top: 5px;
+}
+
+
 
 /* HOMEPAGE */
 
@@ -104,8 +113,30 @@
 
 /* USER DETAILS */
 
+.user-details-name{
+
+}
+
+.user-details-name-left {
+  float: left;
+}
+
+.user-details-name-right {
+  float: right;
+}
+
 .user-feed-outer {
+  margin-bottom: 20px;
   padding: 8px;
+  border: 1px;
+  border-color: #ddd;
+  border-style: solid;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+.user-favorite-outer {
+  margin-bottom: 20px;
   border: 1px;
   border-color: #ddd;
   border-style: solid;

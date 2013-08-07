@@ -26,9 +26,13 @@ class User < ActiveRecord::Base
   def role?(role)
     self.role == role
   end
-  #Salman: user_categories and feeds was in private, messing up stuff.
-   def user_categories_and_feeds
+
+  def user_categories_and_feeds
     feed_users.includes(:feed).group_by(&:category)
+  end
+
+  def user_favorite_entries
+    Entry.joins(:entry_users => :user).where(entry_users: {favourite: true}, users: {id: self.id})
   end
 
   private
