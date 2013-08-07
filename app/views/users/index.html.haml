@@ -1,4 +1,8 @@
 %h1 Users
+%p
+  = form_tag users_path, :method => :get, remote: true, id: :search_form do
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
 .user-feed-list
   -@users.each do |user|
     %h4

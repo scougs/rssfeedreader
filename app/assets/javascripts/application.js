@@ -37,6 +37,13 @@ $(function() {
     toggleSidebar();
   }
 
+     // SEARCH FUNCTION USERS
+
+  $(function() {
+  $('#search').on('keyUp', function() {
+    $('#search_form').submit();
+  });
+});
 
 
 
