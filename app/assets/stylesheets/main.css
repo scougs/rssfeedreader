@@ -181,4 +181,15 @@ li.dashboard {
 }
 
 
+.ui-tabs .ui-tabs-nav li a {
+  font-size: 1.25em;
+}
+
+ul.feeds {
+  list-style: none;
+  font-size: 1.1em;
+
+}
+
+
 

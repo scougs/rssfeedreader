@@ -15,4 +15,9 @@ class Feed < ActiveRecord::Base
     return RSSReader.create_rss_feed(url)
   end
 
+  # def count_unread_entries(u_id)
+  #   self.entries.(user_id: u_id).count
+  # end
+
 end
+

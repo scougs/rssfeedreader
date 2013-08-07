@@ -1,17 +1,7 @@
--if(@feed)
-  -@feeds.each do |feed|
-    %ul
-      %ul
-      %li= feed.title
-      %li= feed.url
-      - feed.entries.each do |entry|
-        %ul
-          %li= entry.title
-
 #tabs
   -if(@hash_userfeeds)
   - i = 0
-    %ul
+    %ul.head
       -@hash_userfeeds.each_pair do |category, arr_userfeeds|
         - i+= 1
         %li
@@ -21,10 +11,10 @@
     -@hash_userfeeds.each_pair do |category, arr_userfeeds|
       - i+= 1
       %div{id: "tabs-#{i}"}
-        %p
+        %ul.feeds
           -arr_userfeeds.each do |userfeed|
-            =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
-
+            %li
+              =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
 
 
 
