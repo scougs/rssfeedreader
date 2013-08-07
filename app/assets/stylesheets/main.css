@@ -125,7 +125,7 @@
 }
 
 #delete-feed-button, .public-toggle-button, .private-toggle-button, .submit-category-update {
-  margin-top: 5px;  
+  margin-top: 5px;
 }
 
 .feedurl {
@@ -152,3 +152,28 @@ a.toggle-sidebar {
 .no-sidebar {
     margin-left:0 !important;
 }
+
+/*FEED USER LIST*/
+
+.user-feed-list {
+}
+
+ul.user-feed-list {
+  font-size: 0.85em;
+  line-height: 1;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+p.user-feed-list {
+  text-decoration: none;
+  font-size: 0.85em;
+}
+
+
+
+

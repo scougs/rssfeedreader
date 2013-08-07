@@ -8,7 +8,7 @@ Rssreader::Application.routes.draw do
   resources :posts
 
 
-  resources :users, only: [:edit, :update, :show]
+  resources :users, only: [:edit, :update, :show, :index]
   resources :feed_users do
     member do
       put :update_category
@@ -18,6 +18,7 @@ Rssreader::Application.routes.draw do
 
 
   get '/my_profile', to: 'users#my_profile', as: :my_profile
+
 
   root to: "home#home"
 

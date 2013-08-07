@@ -11,12 +11,14 @@
           = "#{current_user.first_name} #{current_user.last_name}"
         %p
           = current_user.email
-    
+
 
 .sidebar-menu
   %ul.nav.nav-tabs.nav-stacked
     %li
       = link_to 'Dashboard', feeds_path
+    %li
+      = link_to 'Explore Other Users', users_path
     %li
       = link_to 'My Profile', my_profile_path
     %li
