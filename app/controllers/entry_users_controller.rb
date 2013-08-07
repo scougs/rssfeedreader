@@ -1,7 +1,6 @@
 class EntryUsersController < ApplicationController
   def create
     entryuser=EntryUser.where(user_id: current_user.id, entry_id: params[:entry_id]).first_or_initialize
-    binding.pry
     if(params[:read] )
       entryuser.read = params[:read]
     end
@@ -15,7 +14,6 @@ class EntryUsersController < ApplicationController
     end
 
     entryuser.save
-    binding.pry
     render nothing: true
   end
 end

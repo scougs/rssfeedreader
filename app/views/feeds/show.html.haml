@@ -11,5 +11,8 @@
         =link_to "Mark UnRead", {remote: true}, class:"unread home-right", style: "text-align: right;"
         %p
         =link_to "Archive", {remote: true}, class:"archive home-right", style: "text-align: right;"
+        =link_to "Hide", {remote: true}, class:"hide-content home-left"
+        %span{class: 'home-right'}="---"
         =link_to "Favourite", {remote: true}, class:"favourite home-right", style: "text-align: right;"
+        %br
         %h5=raw entry.content

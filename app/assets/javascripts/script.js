@@ -23,8 +23,23 @@ $(function(){
 //TODO: Stop page refresh
   })
 
+//// Entry functionality////
+    $('.hide-content').click(function() {
+    var parent=$(this).parent();
+     // $("html, body").animate({ scrollTop: 0 }, 600);
+
+     debugger
+    parent.addClass("hide");
+  });
+//Hides all other entries, open the clicked one
   $('.entry').find('.entry-title').click(function() {
     var parent=$(this).parent();
+    debugger
+     $("html, body").animate({ scrollTop: $(this).position().top }, 600);
+     // TODO: Add the scrolling to position
+    $('.content').removeClass("hide");
+    $('.content').addClass("hide");
+
     parent.find(".content").first().toggleClass("hide");
 
     var entry_id=(parent.data('entry-id'));
@@ -43,7 +58,9 @@ $(function(){
   });
 
   //Marks the entry as unread
+
   $('.unread').click(function() {
+
       var parent=$(this).parent();
       parent.toggleClass("hide");
       console.log(parent.find(".content").first());
@@ -90,7 +107,7 @@ $(function(){
        },
     }).done(function( msg ){});
   });
-
+///End Entry Functionalit/Interaction
 //PUBLIC AND PRIVATE FEED UPDATE
 
   $('.private-toggle-button').click(function(){
