@@ -35,10 +35,10 @@ $(function(){
   $('.entry').find('.entry-title').click(function() {
     var parent=$(this).parent();
     debugger
-     $("html, body").animate({ scrollTop: $(this).position().top }, 600);
      // TODO: Add the scrolling to position
     $('.content').removeClass("hide");
     $('.content').addClass("hide");
+    $("html, body").animate({ scrollTop: $(this).position().top }, 600);
 
     parent.find(".content").first().toggleClass("hide");
 
