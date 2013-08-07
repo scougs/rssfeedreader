@@ -1,7 +1,9 @@
 %h1=@feed.title
 %h4="Last Modified at: #{@feed.last_modified}"
 %ul
+  -@twitter = {}
   -@feed.entries.each do |entry|
+    -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
     %li{class:"entry",style:"list-style-type: none;", :data => {:entry_id => entry.id}}
       %h3{class: "entry-title"}=entry.title
       %h4=entry.author
@@ -10,6 +12,7 @@
         =link_to "Read Article", entry.url, data: { confirm: "Are you sure?" }
         =link_to "Mark UnRead", {remote: true}, class:"unread home-right", style: "text-align: right;"
         %p
+        = render partial: 'twitter',object: @twitter
         =link_to "Archive", {remote: true}, class:"archive home-right", style: "text-align: right;"
         =link_to "Hide", {remote: true}, class:"hide-content home-left"
         %span{class: 'home-right'}="---"

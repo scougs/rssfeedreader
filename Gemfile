@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 
+
+# omni auth
+# gem 'omniauth-twitter'
 # added this shtuff to parse xml
 gem 'htmlentities'
 
