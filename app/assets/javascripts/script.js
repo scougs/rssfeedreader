@@ -152,5 +152,7 @@ $(function(){
 
   });
 
+  // DASHBOARD TABS & ACCORDIAN
 
+  $( "#tabs" ).tabs();
 })

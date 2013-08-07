@@ -1,28 +1,21 @@
-%h1 Dashboard Here
+#tabs
+  -if(@hash_userfeeds)
+  - i = 0
+    %ul.head
+      -@hash_userfeeds.each_pair do |category, arr_userfeeds|
+        - i+= 1
+        %li
+          %a{:href => "#tabs-#{i}"}=category
 
--if(@feed)
-  -@feeds.each do |feed|
-    %ul
-      %ul
-      %li= feed.title
-      %li= feed.url
-      - feed.entries.each do |entry|
-        %ul
-          %li= entry.title
-
--if(@hash_userfeeds)
-  -@hash_userfeeds.each_pair do |category, arr_userfeeds|
-    %ul
-    %h3=category
-    -arr_userfeeds.each do |userfeed|
-
-      %li
-        =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
-        = link_to image_tag('X_thumb.png'),{remote: true},class: "delete_feed", data: {userfeed_id: "#{userfeed.id}"}
-      %ul
-        / -userfeed.feed.entries.each do |entry|
-        /   %li=entry.title
-        /   %li=entry.summary
+    - i = 0
+    -@hash_userfeeds.each_pair do |category, arr_userfeeds|
+      - i+= 1
+      %div{id: "tabs-#{i}"}
+        %ul.feeds
+          -arr_userfeeds.each do |userfeed|
+            %li
+              =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
+              =userfeed.feed.get_read_user_entries(current_user).count
 
 
 
