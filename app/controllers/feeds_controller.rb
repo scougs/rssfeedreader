@@ -27,6 +27,8 @@ load_and_authorize_resource
   #   end
   # end
 
+# TODO: Validations arent stopping the user from viewing feeds by id. Need to make it check if the feed
+#  has the user_id through FeedUser
   def show
 
     @feed = Feed.find(params[:id])
@@ -41,7 +43,7 @@ load_and_authorize_resource
   end
 
   def create
-    binding.pry
+
     # Fix make sure i can find by a parsed url
     url = params[:url]
     # Todo: Check if the xml url is available rather then homepage.

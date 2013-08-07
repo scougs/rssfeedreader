@@ -1,5 +1,21 @@
 class EntryUsersController < ApplicationController
   def create
-    binding.pry if DEBUG
+    entryuser=EntryUser.where(user_id: current_user.id, entry_id: params[:entry_id]).first_or_initialize
+    binding.pry
+    if(params[:read] )
+      entryuser.read = params[:read]
+    end
+
+    if(params[:archive])
+      entryuser.archive = params[:archive]
+    end
+
+    if(params[:favourite])
+      entryuser.favourite = params[:favourite]
+    end
+
+    entryuser.save
+    binding.pry
+    render nothing: true
   end
 end

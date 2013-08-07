@@ -23,19 +23,72 @@ $(function(){
 //TODO: Stop page refresh
   })
 
-  $('.entry').find('h3').click(function() {
-    debugger
+  $('.entry').find('.entry-title').click(function() {
     var parent=$(this).parent();
-    parent.find("div").first().toggleClass("hide");
-    var entry_id=console.log(parent.data('entry-id'));
-    console.log(this)
-    // $.ajax({
-    //   type: "POST",
-    //   url: "/entry_users",
-    //   data:  entry_id,
-    //   }).done(function( msg ) {
+    parent.find(".content").first().toggleClass("hide");
 
-    //      });
+    var entry_id=(parent.data('entry-id'));
+
+    $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:
+       {
+        "entry_id": ""+entry_id,
+        "read": "true"
+        },
+      }).done(function( msg ) {
+
+         });
+  });
+
+  //Marks the entry as unread
+  $('.unread').click(function() {
+      var parent=$(this).parent();
+      parent.toggleClass("hide");
+      console.log(parent.find(".content").first());
+      entry_id = parent.parent().data('entry-id');
+
+      $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:
+       {
+        "entry_id": ""+entry_id,
+        "read": "false"
+       },
+    }).done(function( msg ){});
+  });
+
+    $('.archive').click(function() {
+      console.log($(this));
+      var parent=$(this).parent();
+      entry_id = parent.parent().data('entry-id');
+      $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:
+       {
+        "entry_id": ""+entry_id,
+        "archive": "true"
+       },
+    }).done(function( msg ){});
+  });
+
+  $('.favourite').click(function() {
+      var parent=$(this).parent();
+      entry_id = parent.parent().data('entry-id');
+
+      $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:
+       {
+        "entry_id": ""+entry_id,
+        "archive": "true",
+        "favourite": "true"
+       },
+    }).done(function( msg ){});
   });
 
 //PUBLIC AND PRIVATE FEED UPDATE
@@ -43,17 +96,14 @@ $(function(){
   $('.private-toggle-button').click(function(){
 
     user_feed_id = $(this).data('userfeed-id');
-
+    console.log(user_feed_id)
     $.ajax({
       type: "PUT",
       data: {"is_private": "true"},
       url: "/feed_users/"+user_feed_id,
       }).done(function( msg ) {
          });
-
   });
-
-
   $('.public-toggle-button').click(function(){
 
     user_feed_id = $(this).data('userfeed-id');

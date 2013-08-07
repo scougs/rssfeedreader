@@ -43,13 +43,13 @@ class RSSReader
             if (@type == "atom")
 
                 @feed=Feed.where(title: feed_stream.title.content).first
-                binding.pry if DEBUG
+
                 return @feed if(@feed)
 
                 attributes = {
                     title: feed_stream.title.content,
                     feed_url: feed_stream.link.href,
-                    url: url,
+                    url: feed_stream.links[1].href,
                     last_modified: feed_stream.updated.content
                 }
                 @feed = Feed.create(attributes)
@@ -59,16 +59,15 @@ class RSSReader
                 # do atom protocols
             elsif(@type == "rss")
 
-
+                # Returns feed with title if found.
                 @feed=Feed.where(title: feed_stream.channel.title).first
-                binding.pry if DEBUG
                 return @feed if(@feed)
 
                 # do rss protocols
                 attributes = {
                     title: feed_stream.channel.title,
                     feed_url: url,
-                    url: feed_stream.generator.uri,
+                    url: feed_stream.channel.link,
                     # perhaps fix this to pubDate
                     last_modified: feed_stream.channel.lastBuildDate
                 }

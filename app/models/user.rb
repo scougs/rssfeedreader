@@ -8,11 +8,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :feed_users
+  has_many :feed_users, :dependent => :destroy
+  has_many :entry_users, :dependent => :destroy
 
   has_many :feeds, through: :feed_users
 
-  has_many :entries, through: :entry_user
+  has_many :entries, through: :entry_users
 
   attr_accessible :role, :bio, :email, :first_name, :last_name, :photo, :password, :password_confirmation, :remember_me
 

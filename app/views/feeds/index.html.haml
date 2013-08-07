@@ -18,7 +18,7 @@
 
       %li
         =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
-        = link_to image_tag('X_thumb.png'),{},class: "delete_feed", data: {userfeed_id: "#{userfeed.id}"}
+        = link_to image_tag('X_thumb.png'),{remote: true},class: "delete_feed", data: {userfeed_id: "#{userfeed.id}"}
       %ul
         / -userfeed.feed.entries.each do |entry|
         /   %li=entry.title
