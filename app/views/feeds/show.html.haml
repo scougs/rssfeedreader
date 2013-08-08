@@ -1,38 +1,61 @@
-%h2=@feed.title
--if @feed.last_modified
-  %p="Last updated on: #{@feed.last_modified.strftime("%a %d %b %Y")}"
+<<<<<<< HEAD
+.feed-view-list
 
-%ul
-  -@twitter = {}
+  .feed-view-title
 
-  -@feed.entries.each do |entry|
-    -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
+    %h2=@feed.title
 
-    %li{class: "entry",style:"list-style-type: none;", :data => {:entry_id => entry.id}}
-      %h3{class: "entry-title"}=entry.title
+    .feed-view-title-details
 
-      %div{id: entry.guid,class: "content hide"}
-        =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
-        |
-        =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
-        |
-        =link_to "Mark UnRead", {remote: true}, style: "text-align: right;"
-        |
-        =link_to "Archive", {remote: true}
-        |
-        =link_to "Hide", {remote: true}, class: "hide-content"
-        |
-        =link_to "Favourite", {remote: true}, :data => {:entry_id => entry.id}, class: "favourite"
-        |
-        = render partial: 'twitter',object: @twitter
-        %br
-        %br
-        
+      -if @feed.last_modified
+        %p.feed-view-details="Last updated on: #{@feed.last_modified.strftime("%a %d %b %Y")}"
 
-        %p
-          =entry.author
-          wrote this on 
-          =entry.published.strftime("%a %d %b %Y")
-        %br
-          
-        %p=raw entry.content
+  %ul
+    -@twitter = {}
+
+    -@entries.each do |entry|
+      -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
+
+      %li.entry{style:"list-style-type: none;", :data => {:entry_id => entry.id}}
+        %h4.entry-title{id: "read#{entry.id}"}
+          =entry.title
+
+
+        .content.hide{id: entry.guid}
+          |
+          =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
+          |
+          =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
+          |
+          =link_to "Close", {remote: true}, class: "hide-content"
+          |
+          %br
+          %br
+
+          %p
+            - if entry.author
+              =entry.author
+              wrote this on
+              =entry.published.strftime("%a %d %b %Y") 
+            - else
+              Published on 
+              =entry.published.strftime("%a %d %b %Y")
+          %br
+            
+          %p=raw entry.content
+          %br
+
+          .feed-actions
+            |
+            =link_to "Mark Unread", {remote: true}, :data => {:entry_id => entry.id}, style: "text-align: right;", class: "unread"
+            |
+            =link_to "Archive", {remote: true}, :data => {:entry_id => entry.id}
+            |
+            %i.icon-star-empty.glyph
+            =link_to "Favourite", {remote: true}, :data => {:entry_id => entry.id}, class: "favourite"
+            |
+            = render partial: 'twitter', object: @twitter
+            %br
+            %br
+=paginate @entries
+  

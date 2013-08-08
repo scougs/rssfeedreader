@@ -4,13 +4,14 @@
 .sidebar-user
   - if current_user
     .row-fluid
-      .span3.sidebar-userimage
-        = image_tag current_user.photo.thumb.url, class: "img-polaroid"
-      .span7.sidebar-userdetails
-        %h6
-          = "#{current_user.first_name} #{current_user.last_name}"
-        %p
-          = current_user.email
+      .sidebar-userinfo.clearfix
+        .span3.sidebar-userimage
+          = image_tag current_user.photo.thumb.url, class: "img-polaroid"
+        .span7.sidebar-userdetails
+          %h6
+            = "#{current_user.first_name} #{current_user.last_name}"
+          %p.sidebar-useremail
+            = current_user.email
 
 
 .sidebar-menu

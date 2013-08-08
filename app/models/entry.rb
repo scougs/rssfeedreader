@@ -7,8 +7,9 @@ class Entry < ActiveRecord::Base
 
   has_many :users, through: :entry_users
 
-   validates :url, :uniqueness => {:scope => :guid}
-
+  validates :url, :uniqueness => {:scope => :guid}
+   validates_presence_of :url
+    validates_presence_of :feed_id
   attr_accessible :author, :categories, :content, :feed_id, :published, :summary, :title, :url, :guid
 
 end

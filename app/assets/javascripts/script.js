@@ -39,7 +39,7 @@ $(function(){
      // TODO: Add the scrolling to position
     $('.content').removeClass("hide");
     $('.content').addClass("hide");
-    $("html, body").animate({ scrollTop: $(this).position().top }, 600);
+    $("html, body").animate({ scrollTop: ($(this).offset().top) }, 600);
 
     parent.find(".content").first().toggleClass("hide");
 
@@ -56,27 +56,58 @@ $(function(){
       }).done(function( msg ) {
 
          });
+
+    $('#read'+entry_id).addClass("feed-read");
+
   });
 
-  //Marks the entry as unread
+  //Marks the entry as read
 
   $('.unread').click(function() {
-
-      var parent=$(this).parent();
-      parent.toggleClass("hide");
-      console.log(parent.find(".content").first());
-      entry_id = parent.parent().data('entry-id');
+      
+      entry_id = $(this).data('entry-id');
 
       $.ajax({
-      type: "POST",
-      url: "/entry_users",
-      data:
-       {
-        "entry_id": ""+entry_id,
-        "read": "false"
-       },
-    }).done(function( msg ){});
+        type: "POST",
+        url: "/entry_users",
+        data:
+         {
+          "entry_id": ""+entry_id,
+          "read": "false"
+         },
+      }).done(function( msg ){});
+
+      $('#read'+entry_id).removeClass("feed-read");
+      $(this).removeClass("unread");
+      $(this).addClass("read");
+      $(this).text("Mark Read");    
+      
   });
+
+
+    //Marks the entry as unread
+
+    $('.read').on("click", function() {
+        console.log("UNREAD");
+        entry_id = $(this).data('entry-id');
+
+        $.ajax({
+        type: "POST",
+        url: "/entry_users",
+        data:
+         {
+          "entry_id": ""+entry_id,
+          "read": "true"
+         },
+      }).done(function( msg ){});
+
+        $('#read'+entry_id).addClass("feed-read");
+        $(this).removeClass("read");
+        $(this).addClass("unread");
+        $(this).text("Mark Unread");    
+
+    });
+
 
     $('.archive').click(function() {
       console.log($(this));
@@ -93,6 +124,7 @@ $(function(){
     }).done(function( msg ){});
   });
 
+
   $('.favourite').click(function() {
 
       entry_id = $(this).data('entry-id');
@@ -107,6 +139,7 @@ $(function(){
        },
     }).done(function( msg ){});
   });
+
 
   $('.unfavourite').click(function() {
 
