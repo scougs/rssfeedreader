@@ -25,6 +25,7 @@ gem 'acts_as_list'
 gem 'nokogiri'
 gem 'feedzirra'
 
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger'

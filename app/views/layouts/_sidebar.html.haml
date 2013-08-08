@@ -29,10 +29,10 @@
 .sidebar-new-feed
   =form_tag create_feed_url do
     %h4 Subscribe To A New Feed
-    =text_field_tag :url, params[:url], :placeholder => "Enter URL here"
-    =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category"
+    =text_field_tag :url, params[:url], :placeholder => "Enter URL here", class: "sidebar-text-field"
+    =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category", class: "sidebar-text-field"
     %br
-    =submit_tag "Submit", class: "btn-info"
+    =submit_tag "Submit", class: " btn btn-info"
   / =search_form_for @q, url: search_articles_path, html: {:method => :post} do |f|
   /   %h4 Search For Feeds
   /   =f.label :title_cont

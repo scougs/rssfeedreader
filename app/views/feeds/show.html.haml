@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 .feed-view-list
 
   .feed-view-title
 
     %h2=@feed.title
 
-    .feed-view-title-details
+    .feed-view-title-details.clearfix
 
       -if @feed.last_modified
         %p.feed-view-details="Last updated on: #{@feed.last_modified.strftime("%a %d %b %Y")}"
@@ -23,7 +22,7 @@
 
         .content.hide{id: entry.guid}
           |
-          =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
+          =link_to "Reading View", entry_path(entry.id), class: "reader-view"
           |
           =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
           |
@@ -36,12 +35,12 @@
             - if entry.author
               =entry.author
               wrote this on
-              =entry.published.strftime("%a %d %b %Y") 
+              =entry.published.strftime("%a %d %b %Y")
             - else
-              Published on 
+              Published on
               =entry.published.strftime("%a %d %b %Y")
           %br
-            
+
           %p=raw entry.content
           %br
 
@@ -51,11 +50,10 @@
             |
             =link_to "Archive", {remote: true}, :data => {:entry_id => entry.id}
             |
-            %i.icon-star-empty.glyph
             =link_to "Favourite", {remote: true}, :data => {:entry_id => entry.id}, class: "favourite"
             |
             = render partial: 'twitter', object: @twitter
             %br
             %br
 =paginate @entries
-  
+
