@@ -1,5 +1,5 @@
 .sidebar-logo
-  =image_tag("freederlogo.jpg", alt: "Logo Image")
+  =link_to image_tag("freederlogo.jpg", alt: "Logo Image"), feeds_path
 
 .sidebar-user
   - if current_user
@@ -7,7 +7,7 @@
       .sidebar-userinfo.clearfix
         .span3.sidebar-userimage
           = image_tag current_user.photo.thumb.url, class: "img-polaroid"
-        .span7.sidebar-userdetails
+        .span9.sidebar-userdetails
           %h6
             = "#{current_user.first_name} #{current_user.last_name}"
           %p.sidebar-useremail

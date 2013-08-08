@@ -22,11 +22,11 @@
 
         .content.hide{id: entry.guid}
           |
-          =link_to "Reading View", entry_path(entry.id), class: "reader-view"
+          =link_to "Close", {remote: true}, class: "hide-content"
           |
           =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
           |
-          =link_to "Close", {remote: true}, class: "hide-content"
+          =link_to "Reading View", entry_path(entry.id), class: "reader-view"
           |
           %br
           %br

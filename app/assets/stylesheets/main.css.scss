@@ -136,7 +136,7 @@
   padding: 0px;
   margin-top: 10px;
   margin-bottom: 0px;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .sidebar-userimage {
@@ -145,12 +145,13 @@
 
 .sidebar-useremail {
   color: #8d8d8d;
-  font-size: 0.95em;
+  font-size: 1em;
   line-height: 1;
 }
 
 .sidebar li a {
   text-decoration: none !important;
+  font-size: 1.2em;
 }
 
 a.toggle-sidebar {
@@ -307,7 +308,20 @@ a.toggle-sidebar:hover {
 }
 
 .entry {
-  padding-bottom: 2px;
+  padding-bottom: 5px;
+}
+
+.entry-title {
+  padding: 8px;
+  border-color: #fff;
+  border-style: solid;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+
+.entry-title:hover{
+  cursor:pointer;
+  background-color: #ccc;
 }
 
 .accordion-list li {
@@ -372,11 +386,6 @@ ul.feeds {
 
 .entry-view {
 
-}
-
-.entry-title:hover{
-  cursor:pointer;
-background-color: #ccc  ;
 }
 
 .entry-view-header {
