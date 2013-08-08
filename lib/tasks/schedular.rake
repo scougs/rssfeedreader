@@ -16,6 +16,7 @@ task :update_feed => :environment do
     puts "---- #{Time.now-first_time}"
 end
      def update(rss,feed)
+        puts "******WTF?********"
         feed_stream = RSS::Parser.parse(rss)
         type=feed_stream.feed_type
         if(type == "atom")
