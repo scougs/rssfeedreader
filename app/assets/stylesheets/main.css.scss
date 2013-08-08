@@ -394,6 +394,7 @@ background-color: #ccc  ;
   margin-right: auto;
   font-size: 1.4em;
   line-height: 1.6em;
+  padding-bottom: 20px;
 
   p, li, ul {
     margin-bottom: 1.4em;
@@ -425,6 +426,27 @@ background-color: #ccc  ;
   border-right-style:none;
   border-bottom-style:solid;
   border-left-style:none;
+}
+
+.entry-view-footer {
+  text-align: center;
+  color: #333;
+  border: 1px;
+  border-color: #ddd;
+  border-top-style:solid;
+  padding-bottom: 50px;
+  padding-top: 10px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
 }
 
 // ACCORDION
