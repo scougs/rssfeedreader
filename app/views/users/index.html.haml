@@ -2,8 +2,8 @@
 .user-feed-list
 %p
   = form_tag users_path, :method => :get, remote: true, id: :search_form do
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", :name => nil
+    = text_field_tag :search, params[:search], id: :user_search_form, :placeholder => "Enter Search Details"
+    = submit_tag "Search", :name => nil, class: "btn btn-info"
 #users.user-feed-list
   =render @users
 

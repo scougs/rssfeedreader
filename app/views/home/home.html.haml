@@ -8,29 +8,34 @@
     .home-page-body.clearfix
       .span6.home-left
         .home-left-inner
-          %img{:alt => "logo", :src => "/assets/freederlogo2.jpg"}
+          %img.logo{:alt => "logo", :src => "/assets/freederlogo2.jpg"}
 
 
       .span6.home-right
-        %h2 Current Users Sign In
+        %h2 Sign In
         .login
+          = form_tag user_session_path do
+            %br
+            %p.home-text
+              = link_to "Forgotten your password?", new_password_path('user')
+            %br
 
-        = form_tag user_session_path do
-          %br
-          %p.home-text
-            = link_to "Forgotten your password?", new_password_path('user')
-          %br
+            = text_field_tag 'user[email]', nil, :placeholder => "Email Address"
+            = password_field_tag 'user[password]', nil, :placeholder => "Password"
+            %br
 
-          = text_field_tag 'user[email]'
-          = password_field_tag 'user[password]'
-          %br
+            = check_box_tag 'user[remember_me]'
+            %span.remember-me
+              Remember me
+            %br
+            %br
+            %button.sign-in-button.btn-large.btn-info Sign In
+            %br
+            %br
+            
+            
 
-          = check_box_tag 'user[remember_me]'
-          Remember me
-          %br
-          %br
-
-          %button.sign-in-button.btn-large.btn-info Sign In
-          %br
+        %h2 Sign Up
+        %br
 
         = button_to "Sign Up", new_user_registration_path, method:"get", class: "sign-up-button btn-large btn-success"
