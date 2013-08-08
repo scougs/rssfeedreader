@@ -18,12 +18,51 @@ namespace :rss_apis do
             feed.last_modified=feed_stream.updated.content
             binding.pry if DEBUG
             feed.save
-            atom_create_entries(feed_stream, feed)
+            atom_update_delete_entries(feed_stream, feed)
         elsif(type =="rss")
             feed.last_modified =feed_stream.channel.lastBuildDate
             feed.save
             binding.pry if DEBUG
-            rss_create_entries(feed_stream, feed)
+            rss_update_delete_entries(feed_stream, feed)
+        end
+    end
+    def atom_update_delete_entries(feed_stream, feed_record)
+        feed_stream.entries.each do |entry|
+            # :author, :categories, :content, :feed_id, :published, :summary, :title, :url
+            attributes = {
+               title: entry.title.content,
+                url:  entry.link.href,
+                author: entry.author.name.content,
+                content: entry.content.content,
+                published: entry.updated.content,
+                feed_id: feed_record.id,
+                summary: clean_xml(entry.summary.content),
+                guid: entry.id.content
+            }
+            binding.pry if DEBUG
+
+
+            Entry.create(attributes)
+
+        end
+    end
+    def rss_update_delete_entries(feed_stream, feed_record)
+        binding.pry
+        feed_stream.channel.items.each do |item|
+             attributes = {
+               title: item.title,
+                url:  item.link,
+                author: item.author,
+                summary: item.description,
+                content: clean_xml(item.content_encoded),
+                published: item.pubDate,
+                feed_id: feed_record.id,
+                # categories: item.categories,
+                guid: item.guid.content
+            }
+            binding.pry if DEBUG
+            Entry.create(attributes)
+
         end
     end
     def extract_rss_feed(file)
