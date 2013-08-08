@@ -1,18 +1,23 @@
-#tabs
+#accordion
   -if(@hash_userfeeds)
-  - i = 0
-    %ul.head
-      -@hash_userfeeds.each_pair do |category, arr_userfeeds|
-        - i+= 1
-        %li
-          %a{:href => "#tabs-#{i}"}=category
-
-    - i = 0
     -@hash_userfeeds.each_pair do |category, arr_userfeeds|
-      - i+= 1
-      %div{id: "tabs-#{i}"}
-        %ul.feeds
+      %h4
+        =category
+      %div
+        %ul
           -arr_userfeeds.each do |userfeed|
             %li
               =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
+
+
+
+    /     %li
+    /       %a{:href => "#tabs-#{i}"}=category
+
+    / - i = 0
+    / -@hash_userfeeds.each_pair do |category, arr_userfeeds|
+    /   - i+= 1
+    /   %div{id: "tabs-#{i}"}
+    /     %ul.feeds
+
 

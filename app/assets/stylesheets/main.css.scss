@@ -41,7 +41,7 @@
   padding-right: 80px;
   float: left;
   h2{
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
 }
 
@@ -161,7 +161,7 @@ a.toggle-sidebar {
     display:block;
     color: #333;
     padding:0px;
-    text-decoration: none;  
+    text-decoration: none;
 }
 
 a.toggle-sidebar:hover {
@@ -347,6 +347,7 @@ li.dashboard {
 ul.feeds {
   list-style: none;
   font-size: 1.1em;
+
 }
 
 .feed-read {
@@ -369,7 +370,7 @@ background-color: #ccc  ;
   font-family: 'Roboto Slab', serif;
   text-align: center;
   padding-bottom: 40px;
-  
+
 }
 
 .entry-view-body {
@@ -384,6 +385,7 @@ background-color: #ccc  ;
   p, li, ul {
     margin-bottom: 1.4em;
     line-height: 1.6em;
+    list-style: none;
   }
 
 }
@@ -391,7 +393,7 @@ background-color: #ccc  ;
 .entry-view-entry-url, .entry-view-entry-info {
   font-size: 1.2em;
   color: #808080;
-  font-weight: 300; 
+  font-weight: 300;
 }
 
 .entry-view-entry-url {
@@ -411,6 +413,13 @@ background-color: #ccc  ;
   border-bottom-style:solid;
   border-left-style:none;
 }
+
+// ACCORDION
+
+ul.accordion {
+  list-style: none;
+}
+
 
 
 
