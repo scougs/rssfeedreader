@@ -46,6 +46,11 @@ $(function() {
     });
 
 
+      // BUTTON STYLING
+
+      $('input[type=file]').bootstrapFileInput();
+      $('.file-inputs').bootstrapFileInput();
+
 
 
 });

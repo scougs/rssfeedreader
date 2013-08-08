@@ -1,4 +1,4 @@
-.edit-user-details
+.edit-user-details.clearfix
   = form_for(@user) do |f|
     = render 'shared/error_message' , object: @user
     .field
@@ -9,7 +9,7 @@
       = f.text_field :last_name
     .field
       = f.label :email
-      = f.text_field :email
+      = f.text_field :email, id: "user-details-emailbox"
     .field
       = f.label :bio
       = f.text_field :bio

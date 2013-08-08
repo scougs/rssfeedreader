@@ -65,7 +65,11 @@
   min-height: 132px;
 }
 
-#user_email, #user_password {
+#user-details-emailbox {
+
+}
+
+#user_email, #user_password, #user_password_confirmation {
   width: 345px;
   height: 24px;
   font-size: 16px;
@@ -241,12 +245,12 @@ a.toggle-sidebar:hover {
 }
 
 #category-update {
-  width: 150px;
-  height: 14px;
-  font-size: 0.8em;
+  width: auto;
+  height: 33px;
+  font-size: 1em;
   border: 1px solid #bfbfbf;
   padding: 3px;
-  margin-top: 6px;
+  margin-top: 5px;
   margin-bottom: 0px;
 }
 

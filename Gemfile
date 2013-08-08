@@ -24,6 +24,7 @@ gem 'jquery-rails', '~> 2.0'
 gem 'acts_as_list'
 gem 'nokogiri'
 gem 'feedzirra'
+gem 'bootstrap-kaminari-views'
 
 
 group :development, :test do

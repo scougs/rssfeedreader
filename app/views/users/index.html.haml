@@ -6,6 +6,7 @@
     = submit_tag "Search", :name => nil, class: "btn btn-info"
 #users.user-feed-list
   =render @users
+=paginate @users, theme: 'twitter-bootstrap'
 
 
 

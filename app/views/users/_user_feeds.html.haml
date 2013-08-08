@@ -22,7 +22,7 @@
             .user-feed-inner.clearfix
               .user-feed-inner-left
                 %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}
-                  %input{:type => "submit", :value => "Update Category", :class => "submit-category-update btn-mini btn-info", data: {userfeed_id: "#{feeduser.id}"} }
+                  %input{:type => "submit", :value => "Update Category", :class => "submit-category-update btn btn-info", data: {userfeed_id: "#{feeduser.id}"} }
 
               .user-feed-inner-right
                 -if feeduser.is_private.to_s == "true"
