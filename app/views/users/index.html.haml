@@ -1,17 +1,11 @@
 %h1 Users
 .user-feed-list
-  -@users.each do |user|
-    %h4
-      =user.first_name
-      =user.last_name
-    %p
-      =link_to 'View User Profile', user
-    -user.user_categories_and_feeds.each do |key, value|
-      %ul.user-feed-list
-        %li
-          =key
-          |
-    %br
+%p
+  = form_tag users_path, :method => :get, remote: true, id: :search_form do
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
+#users.user-feed-list
+  =render @users
 
 
 
