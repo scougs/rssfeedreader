@@ -1,4 +1,4 @@
-# RSS Reader Project
+# The RSS Reader Project
 
 ###General Assembly Web Development Group Project - Week 8
 

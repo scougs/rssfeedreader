@@ -2,9 +2,20 @@ class UsersController < ApplicationController
 
   load_and_authorize_resource
 
+
   def index
-    @users = User.all
+    if params[:search]
+      @users = User.where("lower(first_name) like :search or lower(last_name) like :search", search: "%#{params[:search].downcase}%")
+    else
+      @users = User.all
+    end
+      respond_to do |format|
+      format.html # index.html.haml
+      format.js
+      format.json { render json: @users }
+    end
   end
+
 
 
   def show

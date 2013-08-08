@@ -7,12 +7,18 @@ load_and_authorize_resource
     @userfeeds = FeedUser.where(user_id: current_user.id)
     binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
-    @feeds = Feed.all
+
+    # @q=Feed.search(params[:q])
+    # @feeds=@q.result(:distinct => true)
+    # binding.pry
+    # @feeds = Feed.all
     respond_to do |format|
       format.html # index.html.erb
       format.js
     end
   end
+
+
 
   # def index
   #   # url = params[:url]

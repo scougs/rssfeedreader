@@ -29,13 +29,13 @@ $(function(){
     var parent=$(this).parent();
      // $("html, body").animate({ scrollTop: 0 }, 600);
 
-     debugger
+     // debugger
     parent.addClass("hide");
   });
 //Hides all other entries, open the clicked one
   $('.entry').find('.entry-title').click(function() {
     var parent=$(this).parent();
-    debugger
+    // debugger
      // TODO: Add the scrolling to position
     $('.content').removeClass("hide");
     $('.content').addClass("hide");
@@ -94,9 +94,8 @@ $(function(){
   });
 
   $('.favourite').click(function() {
-      var parent=$(this).parent();
-      entry_id = parent.parent().data('entry-id');
 
+      entry_id = $(this).data('entry-id');
       $.ajax({
       type: "POST",
       url: "/entry_users",
@@ -108,7 +107,26 @@ $(function(){
        },
     }).done(function( msg ){});
   });
+
+  $('.unfavourite').click(function() {
+
+      entry_id = $(this).data('entry-id');
+      $.ajax({
+      type: "POST",
+      url: "/entry_users",
+      data:
+       {
+        "entry_id": ""+entry_id,
+        "archive": "false",
+        "favourite": "false"
+       },
+    }).done(function( msg ){});
+      $('#fav'+entry_id).addClass("hide")
+  });
 ///End Entry Functionalit/Interaction
+
+
+
 //PUBLIC AND PRIVATE FEED UPDATE
 
   $('.private-toggle-button').click(function(){
@@ -151,6 +169,11 @@ $(function(){
        });
 
   });
+
+  // DASHBOARD TABS & ACCORDIAN
+
+
+  $( "#tabs" ).tabs();
 
 
 })

@@ -8,10 +8,13 @@
       =@entry.title
 
     %p.entry-view-entry-info
-      =@entry.author
-      wrote this on
-      =@entry.published.strftime("%a %d %b %Y")
+      -if @entry.author
+        =@entry.author
+        wrote this on
+        =@entry.published.strftime("%a %d %b %Y")
+      - else
+        Published on
+        =@entry.published.strftime("%a %d %b %Y")
       
-
   .entry-view-body
     =raw @entry.content

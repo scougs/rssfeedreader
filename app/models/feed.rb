@@ -42,8 +42,6 @@ class Feed < ActiveRecord::Base
   end
 
   def self.test_create_feed
-
-
     arr.each do |link|
       RSSReader.new.create_rss_feed(link)
     end
@@ -75,5 +73,18 @@ class Feed < ActiveRecord::Base
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
       end
+  end
+  # TODO: What to do with this ?
+  def get_read_user_entries(user)
+    array = []
+    user.entry_users.each do |entryuser|
+      self.entries.each do |entry|
+        if(entryuser.entry_id ==entry.id &&
+           entryuser.read == true )
+              array.push(entryuser)
+        end
+      end
+    end
+    return array;
   end
 end
