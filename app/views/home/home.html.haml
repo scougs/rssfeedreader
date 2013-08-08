@@ -1,41 +1,36 @@
 .front-page
+  - if current_user
+    = render 'feeds/index'
 
-  .home-page-heading.clearfix
-    %img{:alt => "logo", :src => "/assets/freederlogo.jpg"}
+  - else
+    .home-page-heading.clearfix
 
-  .home-page-body.clearfix
-
-    .span6.home-left
-      %h2 You Should Sign Up
-      .home-left-inner
-        %p.home-text 
-          Weblogs, leading-edge monetize, "leading-edge enterprise webservices utilize blogospheres data-driven capture, web-enabled efficient bleeding-edge peer-to-peer create architectures leverage A-list."
-
-      = button_to "Sign Up", new_user_registration_path, method:"get", class: "sign-up-button btn-large btn-success"
+    .home-page-body.clearfix
+      .span6.home-left
+        .home-left-inner
+          %img{:alt => "logo", :src => "/assets/freederlogo2.jpg"}
 
 
-    .span6.home-right
-      %h2 Current Users Sign In
-      %br
-      .login
-        - if current_user
-          = current_user.email
-          = button_to "Logout", destroy_user_session_path, method: :delete
+      .span6.home-right
+        %h2 Current Users Sign In
+        .login
 
-        - else
-          = form_tag user_session_path do
-            = text_field_tag 'user[email]'
-            = password_field_tag 'user[password]'
-            %br
+        = form_tag user_session_path do
+          %br
+          %p.home-text
+            = link_to "Forgotten your password?", new_password_path('user')
+          %br
 
-              = check_box_tag 'user[remember_me]'
-              Remember me
-            %br
+          = text_field_tag 'user[email]'
+          = password_field_tag 'user[password]'
+          %br
 
-            %button.sign-in-button.btn-large.btn-info Sign In
-            %br
-            %br
-            
-            = link_to "Forgot your password?", new_password_path('user')
-            %br
-        
+          = check_box_tag 'user[remember_me]'
+          Remember me
+          %br
+          %br
+
+          %button.sign-in-button.btn-large.btn-info Sign In
+          %br
+
+        = button_to "Sign Up", new_user_registration_path, method:"get", class: "sign-up-button btn-large btn-success"

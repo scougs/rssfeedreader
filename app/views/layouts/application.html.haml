@@ -15,8 +15,9 @@
       .row-fluid
         .sidebar.span4
           = render 'layouts/sidebar'
-        %a.toggle-sidebar{:href => "#"}
-          %p.btn.btn-warning#sidebar-toggle-button Hide Sidebar
+        %a.toggle-sidebar.rotate{:href => "#"}
+          #sidebar-toggle-button Hide Sidebar
+
 
         .main.span7.offset1
           = yield

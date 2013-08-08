@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.role == role
   end
 
+  def feed_users_hashed_by_category
+    FeedUser.hash_by_category(feed_users)
+  end
+
   def user_categories_and_feeds
     feed_users.includes(:feed).group_by(&:category)
   end
