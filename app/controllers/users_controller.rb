@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:search]
-      @products = User.where("name like ?", "%#{params[:search]}%")
+      @users = User.where("lower(first_name) like :search or lower(last_name) like :search", search: "%#{params[:search].downcase}%")
     else
       @users = User.all
     end

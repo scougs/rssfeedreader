@@ -39,11 +39,11 @@ $(function() {
 
      // SEARCH FUNCTION USERS
 
-  $(function() {
-  $('#search').on('keyUp', function() {
-    $('#search_form').submit();
-  });
-});
+      $(function() {
+      $('#search').on('keyUp', function() {
+        $('#search_form').submit();
+      });
+    });
 
 
 
