@@ -151,7 +151,7 @@ class RSSReader
                 guid: item.guid.content
             }
             Entry.create(attributes)
-            break
+
         end
     end
 end
