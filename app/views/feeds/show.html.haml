@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .feed-view-list
 
   .feed-view-title
@@ -23,7 +23,7 @@
 
         .content.hide{id: entry.guid}
           |
-          =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
+          =link_to "Reading View", entry_path(entry.id), class: "reader-view"
           |
           =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
           |
@@ -36,12 +36,12 @@
             - if entry.author
               =entry.author
               wrote this on
-              =entry.published.strftime("%a %d %b %Y") 
+              =entry.published.strftime("%a %d %b %Y")
             - else
-              Published on 
+              Published on
               =entry.published.strftime("%a %d %b %Y")
           %br
-            
+
           %p=raw entry.content
           %br
 
@@ -58,4 +58,4 @@
             %br
             %br
 =paginate @entries
-  
+
