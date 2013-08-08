@@ -1,15 +1,20 @@
 require 'open-uri'
 require 'rss'
-    desc "Update Feeds"
-    task :update_feed => :environment do
-        feeds=Feed.all
-        feeds.each do |feed|
-            time = Time.now
-            open(feed.feed_url) do |rss|
-                update(rss,feed)
-            end
+desc "Update Feeds"
+task :update_feed => :environment do
+    feeds=Feed.all
+    first_time = Time.now
+    count = 0
+    feeds.each do |feed|
+        time = Time.now
+        open(feed.feed_url) do |rss|
+            update(rss,feed)
+            count += 1
+            puts "#{Time.now-time}"
         end
     end
+    puts "---- #{Time.now-first_time}"
+end
      def update(rss,feed)
         feed_stream = RSS::Parser.parse(rss)
         type=feed_stream.feed_type
@@ -148,7 +153,6 @@ require 'rss'
     str_feed.each_line do |l|
         puts l
         if (['application/atom','application/rss+'].include?('l'))
-            binding.pry
             l_arr=l.split('"')
             l_arr.each do |string|
                 if(string =~ /http:|https:/)
@@ -164,7 +168,7 @@ require 'rss'
         @feed=Feedzirra::Feed.fetch_and_parse(@rss_url)
     end
 
-    binding.pry
+
   end
 
   task :rubyfeed => :environment do
