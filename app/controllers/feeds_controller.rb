@@ -26,6 +26,7 @@ load_and_authorize_resource
 
 # TODO: Validations arent stopping the user from viewing feeds by id. Need to make it check if the feed
 #  has the user_id through FeedUser
+
   def show
 
     @feed = Feed.find(params[:id])
@@ -33,6 +34,7 @@ load_and_authorize_resource
     # 15 Seemed to stop server lag
     @entries = @feed.entries.page(params[:page]).per(15)
   end
+
 
   def new
     @feed = Feed.new
