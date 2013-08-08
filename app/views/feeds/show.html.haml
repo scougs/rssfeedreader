@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .feed-view-list
 
   .feed-view-title
@@ -12,7 +13,7 @@
   %ul
     -@twitter = {}
 
-    -@feed.entries.each do |entry|
+    -@entries.each do |entry|
       -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
 
       %li.entry{style:"list-style-type: none;", :data => {:entry_id => entry.id}}
@@ -56,5 +57,5 @@
             = render partial: 'twitter', object: @twitter
             %br
             %br
-              
-          
+=paginate @entries
+  

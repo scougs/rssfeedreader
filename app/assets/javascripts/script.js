@@ -39,7 +39,7 @@ $(function(){
      // TODO: Add the scrolling to position
     $('.content').removeClass("hide");
     $('.content').addClass("hide");
-    $("html, body").animate({ scrollTop: $(this).position().top }, 600);
+    $("html, body").animate({ scrollTop: ($(this).offset().top) }, 600);
 
     parent.find(".content").first().toggleClass("hide");
 
@@ -205,5 +205,8 @@ $(function(){
 
   // DASHBOARD TABS & ACCORDIAN
 
+
   $( "#tabs" ).tabs();
+
+
 })
