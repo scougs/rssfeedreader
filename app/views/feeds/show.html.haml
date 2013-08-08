@@ -4,7 +4,7 @@
 
     %h2=@feed.title
 
-    .feed-view-title-details
+    .feed-view-title-details.clearfix
 
       -if @feed.last_modified
         %p.feed-view-details="Last updated on: #{@feed.last_modified.strftime("%a %d %b %Y")}"
