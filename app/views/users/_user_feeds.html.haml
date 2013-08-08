@@ -17,7 +17,7 @@
             %p.lastupdate
               %strong
                 Last Updated:
-              = feeduser.feed.last_modified.strftime("%a %d %b %Y")
+              = feeduser.feed.last_modified.strftime("%a %d %b %Y") if(feeduser.feed.last_modified)
             .user-feed-inner.clearfix
               .user-feed-inner-left
                 %input{:name => "user", :type => "text", :id => "category-update", :placeholder => "#{feeduser.category}"}

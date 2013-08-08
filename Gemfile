@@ -8,6 +8,8 @@ gem 'rails', '3.2.14'
 # added this shtuff to parse xml
 gem 'htmlentities'
 
+# Pagination
+gem 'kaminari'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

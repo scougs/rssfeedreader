@@ -6,13 +6,74 @@ class Feed < ActiveRecord::Base
 
 
   # TODO: Validate scope with guid, rather then just title
+   validates_presence_of :feed_url
   validates_uniqueness_of :title
 
 
   attr_accessible :etag, :feed_url, :last_modified, :title, :url
 
+@arr =['http://1000awesomethings.com',
+    'http://blog.joerogan.net',
+    'http://www.hongkiat.com/blog',
+    'http://blogs.telegraph.co.uk/',
+    'http://wordpress.bytesforall.com/',
+    'http://www.devlounge.net/',
+    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
+    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories',
+  'http://1000awesomethings.com',
+    'http://blog.joerogan.net',
+    'http://www.hongkiat.com/blog',
+    'http://blogs.telegraph.co.uk/',
+    'http://wordpress.bytesforall.com/',
+    'http://www.devlounge.net/',
+    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
+    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories',
+  'http://1000awesomethings.com',
+    'http://blog.joerogan.net',
+    'http://www.hongkiat.com/blog',
+    'http://blogs.telegraph.co.uk/',
+    'http://wordpress.bytesforall.com/',
+    'http://www.devlounge.net/',
+    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
+    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories']
+
   def self.create_feed(url)
-    return RSSReader.create_rss_feed(url)
+    return RSSReader.new.create_rss_feed(url)
   end
 
+  def self.test_create_feed
+
+
+    arr.each do |link|
+      RSSReader.new.create_rss_feed(link)
+    end
+  end
+
+  def self.links
+    return @arr
+  end
+
+  def self.thread_create(url,category, user_id)
+    Thread.new do
+        # Fix make sure i can find by a parsed url
+        # Todo: Check if the xml url is available rather then homepage.
+        @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
+        @user = User.find(user_id)
+        if (@feed == nil)
+          @feed = RSSReader.new.create_rss_feed(url)
+           if(@feed != nil)
+            @feed.save
+          end
+        end
+        binding.pry if DEBUG
+        attributes = {
+          feed_id: @feed.id,
+          user_id: @user.id,
+          category: (category.capitalize)
+        }
+
+        FeedUser.create(attributes)
+        ActiveRecord::Base.connection.close
+      end
+  end
 end

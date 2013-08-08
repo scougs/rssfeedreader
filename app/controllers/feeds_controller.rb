@@ -7,9 +7,7 @@ load_and_authorize_resource
     @userfeeds = FeedUser.where(user_id: current_user.id)
     binding.pry if DEBUG
     @hash_userfeeds = FeedUser.hash_by_category(@userfeeds)
-
-    # binding.pry
-    # @feeds = Feed.all
+    @feeds = Feed.all
     respond_to do |format|
       format.html # index.html.erb
       format.js
@@ -32,6 +30,9 @@ load_and_authorize_resource
   def show
 
     @feed = Feed.find(params[:id])
+
+    # 15 Seemed to stop server lag
+    @entries = @feed.entries.page(params[:page]).per(15)
   end
 
   def new
@@ -43,29 +44,12 @@ load_and_authorize_resource
   end
 
   def create
+    time = Time.now
+    Feed.thread_create(params[:url],params[:category],current_user.id)
 
-    # Fix make sure i can find by a parsed url
-    url = params[:url]
-    # Todo: Check if the xml url is available rather then homepage.
-    @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
-    @user = User.find(current_user.id)
-    if (@feed == nil)
-      @feed = RSSReader.new.create_rss_feed(url)
-       if(@feed != nil)
-        @feed.save
-      else
-        return redirect_to feeds_path
-      end
-    end
-    binding.pry if DEBUG
-    attributes = {
-      feed_id: @feed.id,
-      user_id: @user.id,
-      category: (params[:category].capitalize)
-    }
+      puts "--Im donigie=="
+      time = Time.now - time
 
-    FeedUser.create(attributes)
-    # @feed = Feed.new(params[:feed])
     redirect_to feeds_path
   end
 
