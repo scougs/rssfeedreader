@@ -29,6 +29,8 @@
           =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
           |
           =link_to "Reading View", entry_path(entry.id), class: "reader-view"
+          \- reading time is
+          =entry.reading_time
           |
           %br
           %br

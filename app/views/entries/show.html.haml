@@ -18,6 +18,9 @@
       - else
         Published on
         =@entry.published.strftime("%a %d %b %Y")
+        ||
+        Reading time is 
+        =@entry.reading_time
       
   .entry-view-body
     =raw @entry.content
