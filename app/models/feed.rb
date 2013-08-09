@@ -78,9 +78,8 @@ class Feed < ActiveRecord::Base
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
       end
-
     end
-  end
+
   # TODO: What to do with this ?
   def get_read_user_entries(user)
     array = []
