@@ -16,13 +16,11 @@ namespace :rss_apis do
         type=feed_stream.feed_type
         if(type == "atom")
             feed.last_modified=feed_stream.updated.content
-            binding.pry if DEBUG
             feed.save
             atom_update_delete_entries(feed_stream, feed)
         elsif(type =="rss")
             feed.last_modified =feed_stream.channel.lastBuildDate
             feed.save
-            binding.pry if DEBUG
             rss_update_delete_entries(feed_stream, feed)
         end
     end
@@ -39,7 +37,6 @@ namespace :rss_apis do
                 summary: clean_xml(entry.summary.content),
                 guid: entry.id.content
             }
-            binding.pry if DEBUG
 
 
             Entry.create(attributes)
@@ -47,7 +44,6 @@ namespace :rss_apis do
         end
     end
     def rss_update_delete_entries(feed_stream, feed_record)
-        binding.pry
         feed_stream.channel.items.each do |item|
              attributes = {
                title: item.title,
@@ -60,7 +56,6 @@ namespace :rss_apis do
                 # categories: item.categories,
                 guid: item.guid.content
             }
-            binding.pry if DEBUG
             Entry.create(attributes)
 
         end
@@ -103,7 +98,6 @@ namespace :rss_apis do
                 summary: clean_xml(entry.summary.content),
                 guid: entry.id.content
             }
-            binding.pry if DEBUG
             Entry.create(attributes)
 
         end
@@ -120,7 +114,6 @@ namespace :rss_apis do
 
  # TODO: Add categories, perhaps a relation database
     def rss_create_entries(feed_stream, feed_record)
-        binding.pry
         feed_stream.channel.items.each do |item|
              attributes = {
                title: item.title,
@@ -133,7 +126,6 @@ namespace :rss_apis do
                 # categories: item.categories,
                 guid: item.guid.content
             }
-            binding.pry if DEBUG
             Entry.create(attributes)
 
         end
@@ -145,13 +137,11 @@ namespace :rss_apis do
     time = Time.now
     @feed=Feedzirra::Feed.fetch_and_parse("http://feeds.feedblitz.com/SethsBlog")
     puts "Time to fetch and parse with Feedzirra: #{Time.now-time}"
-    binding.pry
     str_feed = open('http://feeds.feedblitz.com/SethsBlog').read
     @rss_url = nil
     str_feed.each_line do |l|
         puts l
         if (['application/atom','application/rss+'].include?('l'))
-            binding.pry
             l_arr=l.split('"')
             l_arr.each do |string|
                 if(string =~ /http:|https:/)
@@ -167,7 +157,6 @@ namespace :rss_apis do
         @feed=Feedzirra::Feed.fetch_and_parse(@rss_url)
     end
 
-    binding.pry
   end
 
   task :rubyfeed => :environment do
