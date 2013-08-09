@@ -52,15 +52,19 @@ class Feed < ActiveRecord::Base
   end
 
   def self.thread_create(url,category, user_id)
-    Thread.new do
+    # Thread.new do
         # Fix make sure i can find by a parsed url
         # Todo: Check if the xml url is available rather then homepage.
+
         @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
+        binding.pry
         @user = User.find(user_id)
         if (@feed == nil)
           @feed = RSSReader.new.create_rss_feed(url)
            if(@feed != nil)
             @feed.save
+          else
+            return nil
           end
         end
         binding.pry if DEBUG
@@ -74,7 +78,7 @@ class Feed < ActiveRecord::Base
         end
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
-      end
+      # end
   end
   # TODO: What to do with this ?
   def get_read_user_entries(user)

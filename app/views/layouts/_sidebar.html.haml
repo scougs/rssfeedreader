@@ -1,5 +1,5 @@
 .sidebar-logo
-  =image_tag("freederlogo.jpg", alt: "Logo Image")
+  =link_to image_tag("freederlogo.jpg", alt: "Logo Image"), feeds_path
 
 .sidebar-user
   - if current_user
@@ -7,7 +7,7 @@
       .sidebar-userinfo.clearfix
         .span3.sidebar-userimage
           = image_tag current_user.photo.thumb.url, class: "img-polaroid"
-        .span7.sidebar-userdetails
+        .span9.sidebar-userdetails
           %h6
             = "#{current_user.first_name} #{current_user.last_name}"
           %p.sidebar-useremail
@@ -29,10 +29,10 @@
 .sidebar-new-feed
   =form_tag create_feed_url do
     %h4 Subscribe To A New Feed
-    =text_field_tag :url, params[:url], :placeholder => "Enter URL here"
-    =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category"
+    =text_field_tag :url, params[:url], :placeholder => "Enter URL here", class: "sidebar-text-field"
+    =text_field_tag :category, params[:category], :placeholder => "Enter Feed Category", class: "sidebar-text-field"
     %br
-    =submit_tag "Submit", class: "btn-info"
+    =submit_tag "Submit", class: " btn btn-info"
   / =search_form_for @q, url: search_articles_path, html: {:method => :post} do |f|
   /   %h4 Search For Feeds
   /   =f.label :title_cont

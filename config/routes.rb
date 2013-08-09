@@ -10,6 +10,10 @@ Rssreader::Application.routes.draw do
   resources :entries, only: [:show]
 
   resources :users, only: [:edit, :update, :show, :index]
+
+  resources :users do get 'page/:page', action: :index, on: :collection
+  end
+
   resources :feed_users do
     member do
       put :update_category

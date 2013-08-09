@@ -1,12 +1,15 @@
-%h4
+%h3
   =user.first_name
   =user.last_name
-  %br
-    %p.user-feed-list
-      =link_to 'View User Profile', user
-      -user.user_categories_and_feeds.each do |key, value|
-        %ul.user-feed-list
-          %li
-            =key
-            |
-      %br
+  -if current_user.role == 'admin'
+    =button_to 'Delete User',user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+%p.user-feed-list
+  =link_to 'View User Profile', user
+  -user.user_categories_and_feeds.each do |key, feedusers|
+    %ul.user-feed-list
+      %li
+        =key
+        |
+        -feedusers.each do |feeduser|
+          %br
+          =feeduser.feed.title if(feeduser.is_private == false)

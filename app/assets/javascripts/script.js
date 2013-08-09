@@ -89,7 +89,7 @@ $(function(){
     //Marks the entry as unread
 
     $('.read').on("click", function() {
-        console.log("UNREAD");
+
         entry_id = $(this).data('entry-id');
 
         $.ajax({
@@ -111,19 +111,45 @@ $(function(){
 
 
     $('.archive').click(function() {
-      console.log($(this));
-      var parent=$(this).parent();
-      entry_id = parent.parent().data('entry-id');
+      
+      entry_id = $(this).data('entry-id');
+      
       $.ajax({
-      type: "POST",
-      url: "/entry_users",
-      data:
-       {
-        "entry_id": ""+entry_id,
-        "archive": "true"
-       },
-    }).done(function( msg ){});
+        type: "POST",
+        url: "/entry_users",
+        data:
+         {
+          "entry_id": ""+entry_id,
+          "archive": "true"
+         },
+      }).done(function( msg ){});
+
+      $(this).removeClass("archive");
+      $(this).addClass("unarchive");
+      $(this).text("Unarchive");
+
   });
+
+
+      $('.unarchive').click(function() {
+        
+        entry_id = $(this).data('entry-id');
+
+        $.ajax({
+          type: "POST",
+          url: "/entry_users",
+          data:
+           {
+            "entry_id": ""+entry_id,
+            "archive": "true"
+           },
+          }).done(function( msg ){});
+
+        $(this).removeClass("unarchive");
+        $(this).addClass("archive");
+        $(this).text("Archive");
+
+    });
 
 
   $('.favourite').click(function() {
@@ -139,6 +165,11 @@ $(function(){
         "favourite": "true"
        },
     }).done(function( msg ){});
+
+      $(this).removeClass("favourite");
+      $(this).addClass("unfavourite");
+      $(this).text("Unfavourite");
+
   });
 
 
@@ -207,7 +238,9 @@ $(function(){
   // DASHBOARD TABS & ACCORDIAN
 
 
-  $( "#tabs" ).tabs();
+  // $( "#tabs" ).tabs();
+
+    $( "#accordion" ).accordion();
 
 
 })

@@ -21,13 +21,12 @@ end
         type=feed_stream.feed_type
         if(type == "atom")
             feed.last_modified=feed_stream.updated.content
-            binding.pry if DEBUG
             feed.save
             atom_update_delete_entries(feed_stream, feed)
         elsif(type =="rss")
             feed.last_modified =feed_stream.channel.lastBuildDate
             feed.save
-            binding.pry if DEBUG
+
             rss_update_delete_entries(feed_stream, feed)
         end
     end
@@ -44,11 +43,11 @@ end
                 summary: clean_xml(entry.summary.content),
                 guid: entry.id.content
             }
-            binding.pry if DEBUG
 
+            entry=Entry.where(attributes).first_or_initialize
+            entry.save
 
-            Entry.create(attributes)
-
+            create_entry_users_all(feed_record.id, entry.id )
         end
     end
     def rss_update_delete_entries(feed_stream, feed_record)
@@ -65,8 +64,20 @@ end
                 guid: item.guid.content
             }
             binding.pry if DEBUG
-            Entry.create(attributes)
 
+            entry=Entry.where(attributes).first_or_initialize
+            entry.save
+
+            create_entry_users_all(feed_record.id, entry.id )
+        end
+    end
+    def create_entry_users_all(feed_id, entry_id)
+        # Gets all users subscribed to specific feed
+        @feedusers=FeedUser.where(feed_id: feed_id)
+
+        # Creates a new entryuser row, for every new entry for each of the users.
+        @feedusers.each do |feeduser|
+            EntryUser.create(feed_id: feed_id, entry_id: entry_id, user_id:feeduser.user_id )
         end
     end
     def extract_rss_feed(file)
@@ -107,7 +118,6 @@ end
                 summary: clean_xml(entry.summary.content),
                 guid: entry.id.content
             }
-            binding.pry if DEBUG
             Entry.create(attributes)
 
         end
