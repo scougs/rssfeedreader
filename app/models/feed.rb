@@ -77,7 +77,7 @@ class Feed < ActiveRecord::Base
         end
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
-      # end
+      end
     end
   end
   # TODO: What to do with this ?
