@@ -2,7 +2,7 @@
   %h2 Favourite Posts
   %br
   -@twitter = {}
-  -current_user.user_favorite_entries.each do |favorite|
+  -user.user_favorite_entries.each do |favorite|
 
     -@twitter[:title] = favorite.title; @twitter[:url] = favorite.url;
 
