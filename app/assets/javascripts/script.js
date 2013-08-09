@@ -44,14 +44,15 @@ $(function(){
     parent.find(".content").first().toggleClass("hide");
 
     var entry_id=(parent.data('entry-id'));
-
+    var feed_id =(parent.data('feed-id'));
     $.ajax({
       type: "POST",
       url: "/entry_users",
       data:
        {
         "entry_id": ""+entry_id,
-        "read": "true"
+        "read": "true",
+        "feed_id": ""+feed_id,
         },
       }).done(function( msg ) {
 
@@ -64,7 +65,7 @@ $(function(){
   //Marks the entry as read
 
   $('.unread').click(function() {
-      
+
       entry_id = $(this).data('entry-id');
 
       $.ajax({
@@ -80,8 +81,8 @@ $(function(){
       $('#read'+entry_id).removeClass("feed-read");
       $(this).removeClass("unread");
       $(this).addClass("read");
-      $(this).text("Mark Read");    
-      
+      $(this).text("Mark Read");
+
   });
 
 
@@ -104,7 +105,7 @@ $(function(){
         $('#read'+entry_id).addClass("feed-read");
         $(this).removeClass("read");
         $(this).addClass("unread");
-        $(this).text("Mark Unread");    
+        $(this).text("Mark Unread");
 
     });
 

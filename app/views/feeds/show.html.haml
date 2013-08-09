@@ -13,17 +13,18 @@
   %ul
     -@twitter = {}
 
-    -@entries.each do |entry|
+    -@entryusers.each do |entryuser|
+      -entry=entryuser.entry
       -@twitter[:title] = entry.title; @twitter[:url] = entry.url;
 
-      %li.entry{style:"list-style-type: none;", :data => {:entry_id => entry.id}}
+      %li.entry{style:"list-style-type: none;", :data => {:entry_id => entry.id, :feed_id => @feed.id}}
         %h4.entry-title{id: "read#{entry.id}"}
           =entry.title
 
 
         .content.hide{id: entry.guid}
           |
-          =link_to "Reading View", entry_path(entry.id), class: "reader-view" 
+          =link_to "Reading View", entry_path(entry.id), class: "reader-view"
           |
           =link_to "View Original", entry.url, data: { confirm: "Are you sure?" }
           |
@@ -36,12 +37,12 @@
             - if entry.author
               =entry.author
               wrote this on
-              =entry.published.strftime("%a %d %b %Y") 
+              =entry.published.strftime("%a %d %b %Y")
             - else
-              Published on 
+              Published on
               =entry.published.strftime("%a %d %b %Y")
           %br
-            
+
           %p=raw entry.content
           %br
 
@@ -57,5 +58,5 @@
             = render partial: 'twitter', object: @twitter
             %br
             %br
-=paginate @entries
-  
+=paginate @entryusers
+

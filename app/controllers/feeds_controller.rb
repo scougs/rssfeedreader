@@ -2,7 +2,17 @@ class FeedsController < ApplicationController
 
 before_filter :authenticate_user!
 load_and_authorize_resource
-
+#   def get_feedentries(entries)
+#       arr = []
+#       entries.each do |entry|
+#         current_user.entry_users.where(read: false) do |entryuser|
+#           if(entry.id == entryuser.id)
+#             arr.push(entry)
+#           end
+#         end
+#     end
+#     return arr
+# end
   def index
 
     @hash_userfeeds = current_user.feed_users_hashed_by_category
@@ -31,7 +41,9 @@ load_and_authorize_resource
     @feed = Feed.find(params[:id])
 
     # 15 Seemed to stop server lag
-    @entries = @feed.entries.page(params[:page]).per(15)
+    # @entries = @feed.entries.page(params[:page]).per(15)
+   @entryusers=current_user.entry_users.where('read is NULL AND feed_id = ? OR read = false AND feed_id = ? ', @feed.id, @feed.id).page(params[:page]).per(2)
+
   end
 
   def new

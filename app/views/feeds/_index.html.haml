@@ -7,12 +7,15 @@
         %li
           %a{:href => "#tabs-#{i}"}=category
 
+
     - i = 0
     -@hash_userfeeds.each_pair do |category, arr_userfeeds|
       - i+= 1
       %div{id: "tabs-#{i}"}
         %ul.feeds
+          -entryusers = current_user.entry_users
           -arr_userfeeds.each do |userfeed|
             %li
               =link_to "#{userfeed.feed.title}", {controller: "feeds", action: "show", id: userfeed.feed.id}, id: userfeed.id
+              =entryusers.where('read is NULL AND feed_id = ? OR read = false AND feed_id = ? ',userfeed.feed_id, userfeed.feed_id).count
 

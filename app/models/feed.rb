@@ -69,7 +69,9 @@ class Feed < ActiveRecord::Base
           user_id: @user.id,
           category: (category.capitalize)
         }
-
+        @feed.entries.each do |entry|
+            entryuser=EntryUser.create(user_id: user_id, entry_id: entry.id, feed_id: @feed.id)
+        end
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
       end
