@@ -55,7 +55,7 @@ class Feed < ActiveRecord::Base
     # Thread.new do
         # Fix make sure i can find by a parsed url
         # Todo: Check if the xml url is available rather then homepage.
-
+      Thread.new
         @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
         @user = User.find(user_id)
         if (@feed == nil)
@@ -78,6 +78,7 @@ class Feed < ActiveRecord::Base
         FeedUser.create(attributes)
         ActiveRecord::Base.connection.close
       # end
+    end
   end
   # TODO: What to do with this ?
   def get_read_user_entries(user)

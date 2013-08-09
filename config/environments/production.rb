@@ -15,7 +15,7 @@ Rssreader::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -64,4 +64,16 @@ Rssreader::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+    # Carrierwave
+  CarrierWave.configure do |config|
+    config.storage = :fog
+    config.fog_credentials = {
+      :provider               => 'AWS',
+      :aws_access_key_id      =>  ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key  => ENV['AWS_SECRET_ACCESS_KEY']
+    }
+    config.fog_directory = ENV['RSS_READER_BUCKET']
+  end
+
 end

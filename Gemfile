@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 
 
-# gem "fog", "~> 1.3.1"
+gem "fog", "~> 1.3.1"
 
 # added this shtuff to parse xml
 gem 'htmlentities'

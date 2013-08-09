@@ -14,14 +14,7 @@ module Rssreader
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    CarrierWave.configure do |config|
-  config.fog_credentials = {
-    :provider               => 'AWS',                        # required
-    :aws_access_key_id      => 'AKIAJ2VYYPHVRLKEFM7Q',                        # required
-    :aws_secret_access_key  => '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',                        # required
-    }
-  config.fog_directory  = 'http://scougsbucket1.s3.amazonaws.com/'                     # required
-end
+
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{Rails.root}/lib)
