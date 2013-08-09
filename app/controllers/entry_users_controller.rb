@@ -1,6 +1,6 @@
 class EntryUsersController < ApplicationController
   def create
-    entryuser=EntryUser.where(user_id: current_user.id, entry_id: params[:entry_id], feed_id: params[:feed_id]).first_or_initialize
+    entryuser=EntryUser.where(user_id: current_user.id, entry_id: params[:entry_id]).first_or_initialize
     if(params[:read] )
       entryuser.read = params[:read]
     end

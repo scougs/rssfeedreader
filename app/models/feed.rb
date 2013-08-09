@@ -57,7 +57,6 @@ class Feed < ActiveRecord::Base
         # Todo: Check if the xml url is available rather then homepage.
 
         @feed = Feed.where('url = :url OR feed_url = :url', url: url).first
-        binding.pry
         @user = User.find(user_id)
         if (@feed == nil)
           @feed = RSSReader.new.create_rss_feed(url)
