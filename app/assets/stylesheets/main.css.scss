@@ -113,13 +113,46 @@
 }
 
 
+/* ABOUT PAGE */
+
+.aboutpage {
+  padding-top: 20px;
+}
+
+.aboutpage p {
+  font-size: 1.3em;
+}
+
+.aboutpage li {
+  font-size: 1.3em;
+}
+
+.aboutpage a:hover {
+  text-decoration: underline;
+}
+
+.aboutpage blockquote {
+  font-size: 1.2em;
+}
+
+.team-photo-box {
+  border: 1px;
+  border-color: #bfbfbf;;
+  border-style: solid;
+  padding: 10px;
+}
+
+.team-photo-text {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+
 /* SIDEBAR */
 
 .sidebar {
   padding: 10px;
-/*  border: 2px;
-  border-color: #333;
-  border-style: solid;*/
 }
 
 .sidebar-userinfo {
@@ -147,6 +180,7 @@
   border-style: solid;
   border-radius: 4px;
   -moz-border-radius: 4px;
+  margin-bottom: 35px;
 }
 
 .sidebar-userdetails h6 {

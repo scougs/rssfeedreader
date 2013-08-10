@@ -25,6 +25,7 @@ gem 'acts_as_list'
 gem 'nokogiri'
 gem 'feedzirra'
 gem 'bootstrap-kaminari-views'
+gem 'high_voltage'
 
 
 group :development, :test do
