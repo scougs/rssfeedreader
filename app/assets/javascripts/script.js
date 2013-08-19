@@ -235,10 +235,7 @@ $(function(){
 
   });
 
-  // DASHBOARD TABS & ACCORDIAN
-
-
-  // $( "#tabs" ).tabs();
+  // ACCORDION
 
     $( "#accordion" ).accordion();
 

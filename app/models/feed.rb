@@ -12,31 +12,6 @@ class Feed < ActiveRecord::Base
 
   attr_accessible :etag, :feed_url, :last_modified, :title, :url
 
-@arr =['http://1000awesomethings.com',
-    'http://blog.joerogan.net',
-    'http://www.hongkiat.com/blog',
-    'http://blogs.telegraph.co.uk/',
-    'http://wordpress.bytesforall.com/',
-    'http://www.devlounge.net/',
-    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
-    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories',
-  'http://1000awesomethings.com',
-    'http://blog.joerogan.net',
-    'http://www.hongkiat.com/blog',
-    'http://blogs.telegraph.co.uk/',
-    'http://wordpress.bytesforall.com/',
-    'http://www.devlounge.net/',
-    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
-    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories',
-  'http://1000awesomethings.com',
-    'http://blog.joerogan.net',
-    'http://www.hongkiat.com/blog',
-    'http://blogs.telegraph.co.uk/',
-    'http://wordpress.bytesforall.com/',
-    'http://www.devlounge.net/',
-    'http://hosted.ap.org/lineups/USHEADS-rss_2.0.xml?SITE=RANDOM&SECTION=HOME',
-    'http://rssfeeds.usatoday.com/usatoday-NewsTopStories']
-
   def self.create_feed(url)
     return RSSReader.new.create_rss_feed(url)
   end
@@ -45,10 +20,6 @@ class Feed < ActiveRecord::Base
     arr.each do |link|
       RSSReader.new.create_rss_feed(link)
     end
-  end
-
-  def self.links
-    return @arr
   end
 
   def self.thread_create(url,category, user_id)

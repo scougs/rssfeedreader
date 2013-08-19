@@ -2,14 +2,12 @@ class UsersController < ApplicationController
 
   load_and_authorize_resource
 
-
   def index
     if params[:search]
       @users = User.where("lower(first_name) like :search or lower(last_name) like :search", search: "%#{params[:search].downcase}%")
     else
       # @users = User.all
       @users = User.order(:created_at).page(params[:page])
-
     end
       respond_to do |format|
       format.html # index.html.haml
@@ -18,13 +16,9 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def show
     @user = User.find(params[:id])
-
   end
-
 
   def new
     @user = User.new
@@ -43,7 +37,6 @@ class UsersController < ApplicationController
         render 'new'
       end
     end
-
 
   def update
     @user = User.all
